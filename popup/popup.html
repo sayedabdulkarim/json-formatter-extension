@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JSON Formatter Pro</title>
+  <link rel="stylesheet" href="../src/css/main.css">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div id="app" class="jfp-container">
+    <!-- Header -->
+    <header class="jfp-header">
+      <div class="jfp-logo">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <path fill="currentColor" d="M5 3h2v2H5v5a2 2 0 0 1-2 2 2 2 0 0 1 2 2v5h2v2H5c-1.07-.27-2-.9-2-2v-4a2 2 0 0 0-2-2H0v-2h1a2 2 0 0 0 2-2V5a2 2 0 0 1 2-2m14 0a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2h1v2h-1a2 2 0 0 0-2 2v4a2 2 0 0 1-2 2h-2v-2h2v-5a2 2 0 0 1 2-2 2 2 0 0 1-2-2V5h-2V3h2m-7 12a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m-4 0a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m8 0a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1z"/>
+        </svg>
+        <div class="jfp-logo-text">
+          <span class="jfp-title">JSON Formatter Pro</span>
+          <span class="jfp-author">by Sayed Abdul Karim</span>
+        </div>
+      </div>
+      <div class="jfp-header-actions">
+        <button id="btn-settings" class="jfp-btn jfp-btn-icon" title="Settings">
+          <svg viewBox="0 0 24 24" width="18" height="18">
+            <path fill="currentColor" d="M12 15.5A3.5 3.5 0 0 1 8.5 12 3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97 0-.33-.03-.66-.07-1l2.11-1.63c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.31-.61-.22l-2.49 1c-.52-.39-1.06-.73-1.69-.98l-.37-2.65A.506.506 0 0 0 14 2h-4c-.25 0-.46.18-.5.42l-.37 2.65c-.63.25-1.17.59-1.69.98l-2.49-1c-.22-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64L4.57 11c-.04.34-.07.67-.07 1 0 .33.03.65.07.97l-2.11 1.66c-.19.15-.25.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1.01c.52.4 1.06.74 1.69.99l.37 2.65c.04.24.25.42.5.42h4c.25 0 .46-.18.5-.42l.37-2.65c.63-.26 1.17-.59 1.69-.99l2.49 1.01c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.66z"/>
+          </svg>
+        </button>
+        <button id="btn-theme" class="jfp-btn jfp-btn-icon" title="Toggle Theme">
+          <svg viewBox="0 0 24 24" width="18" height="18" class="icon-dark">
+            <path fill="currentColor" d="M17.75 4.09L15.22 6.03l2.89 1.73-.84 3.04 3.04.84V8.46l-2.56-4.37zM3.46 11.25l3.04-.84-.84-3.04 2.89-1.73L6.02 3.55 3.46 7.92v3.33zm3.04 4.59l-.84 3.04 2.53-1.54V21l4.14-2.3-2.56-4.37-3.27 1.51zm14.54-1.51l-3.27-1.51-2.56 4.37L19.35 21v-3.66l2.53 1.54-.84-3.04zM12 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
+          </svg>
+          <svg viewBox="0 0 24 24" width="18" height="18" class="icon-light" style="display:none">
+            <path fill="currentColor" d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z"/>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Tabs -->
+    <div class="jfp-tabs">
+      <button class="jfp-tab active" data-tab="format">Format</button>
+      <button class="jfp-tab" data-tab="diff">Diff</button>
+      <button class="jfp-tab" data-tab="convert">Convert</button>
+      <button class="jfp-tab" data-tab="query">Query</button>
+    </div>
+
+    <!-- Tab Content -->
+    <div class="jfp-tab-content">
+      <!-- Format Tab -->
+      <div id="tab-format" class="jfp-tab-panel active">
+        <!-- Split Layout Container -->
+        <div class="jfp-split-container">
+          <!-- Left Panel - Input -->
+          <div class="jfp-left-panel">
+            <div class="jfp-panel-header">
+              <span>INPUT JSON</span>
+              <div class="jfp-input-actions">
+                <button id="btn-paste" class="jfp-btn-sm">Paste</button>
+                <button id="btn-sample" class="jfp-btn-sm">Sample</button>
+                <button id="btn-clear" class="jfp-btn-sm">Clear</button>
+              </div>
+            </div>
+            <textarea id="json-input" class="jfp-editor-full" placeholder="Paste or type JSON here..."></textarea>
+            <div id="input-error" class="jfp-input-error"></div>
+            <!-- Toolbar -->
+            <div class="jfp-toolbar-compact">
+              <button id="btn-format" class="jfp-btn jfp-btn-primary">Format</button>
+              <button id="btn-minify" class="jfp-btn">Minify</button>
+              <button id="btn-validate" class="jfp-btn">Validate</button>
+              <select id="indent-select" class="jfp-select">
+                <option value="2">2 spaces</option>
+                <option value="4">4 spaces</option>
+                <option value="tab">Tab</option>
+              </select>
+              <label class="jfp-checkbox">
+                <input type="checkbox" id="sort-keys">
+                <span>Sort</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Right Panel - Output -->
+          <div class="jfp-right-panel">
+            <div class="jfp-panel-header">
+              <div class="jfp-view-tabs-inline">
+                <button class="jfp-view-tab active" data-view="tree">Tree</button>
+                <button class="jfp-view-tab" data-view="raw">Raw</button>
+                <button class="jfp-view-tab" data-view="table">Table</button>
+              </div>
+              <div class="jfp-output-actions">
+                <button id="btn-copy-output" class="jfp-btn-sm">Copy</button>
+                <button id="btn-download" class="jfp-btn-sm">Download</button>
+              </div>
+            </div>
+            <!-- Search Bar -->
+            <div class="jfp-search-bar-compact">
+              <input type="text" id="search-input" class="jfp-search-input" placeholder="Search...">
+              <button id="btn-search-prev" class="jfp-btn-sm" disabled>&lt;</button>
+              <button id="btn-search-next" class="jfp-btn-sm" disabled>&gt;</button>
+            </div>
+            <!-- Output Views -->
+            <div class="jfp-output-area">
+              <div id="output-tree" class="jfp-output-view active"></div>
+              <div id="output-raw" class="jfp-output-view"></div>
+              <div id="output-table" class="jfp-output-view"></div>
+            </div>
+            <!-- Stats -->
+            <div class="jfp-stats-compact">
+              <span>Size: <strong id="stat-size">0 B</strong></span>
+              <span>Keys: <strong id="stat-keys">0</strong></span>
+              <span>Depth: <strong id="stat-depth">0</strong></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Diff Tab -->
+      <div id="tab-diff" class="jfp-tab-panel">
+        <div class="jfp-diff-inputs">
+          <div class="jfp-diff-input">
+            <div class="jfp-input-header">
+              <span>Original JSON</span>
+              <button class="jfp-btn-sm btn-paste-left">Paste</button>
+            </div>
+            <textarea id="diff-left" class="jfp-editor" placeholder="Paste original JSON..."></textarea>
+          </div>
+          <div class="jfp-diff-input">
+            <div class="jfp-input-header">
+              <span>Modified JSON</span>
+              <button class="jfp-btn-sm btn-paste-right">Paste</button>
+            </div>
+            <textarea id="diff-right" class="jfp-editor" placeholder="Paste modified JSON..."></textarea>
+          </div>
+        </div>
+        <div class="jfp-toolbar">
+          <button id="btn-compare" class="jfp-btn jfp-btn-primary">
+            <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2m0 16H5V5h14v14M7.5 13h2v4H7.5v-4m4-2h2v6h-2V7m4 4h2v6h-2v-6z"/></svg>
+            Compare
+          </button>
+          <label class="jfp-checkbox">
+            <input type="checkbox" id="ignore-order">
+            <span>Ignore array order</span>
+          </label>
+          <div id="diff-error" class="jfp-diff-error"></div>
+        </div>
+        <div id="diff-output" class="jfp-diff-output"></div>
+        <div id="diff-summary" class="jfp-diff-summary"></div>
+      </div>
+
+      <!-- Convert Tab -->
+      <div id="tab-convert" class="jfp-tab-panel">
+        <div class="jfp-input-section">
+          <div class="jfp-input-header">
+            <span>Input</span>
+            <select id="convert-from" class="jfp-select">
+              <option value="json">JSON</option>
+              <option value="yaml">YAML</option>
+              <option value="xml">XML</option>
+              <option value="csv">CSV</option>
+              <option value="querystring">Query String</option>
+            </select>
+          </div>
+          <textarea id="convert-input" class="jfp-editor" placeholder="Paste data to convert..."></textarea>
+        </div>
+        <div class="jfp-toolbar">
+          <button id="btn-convert" class="jfp-btn">
+            <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M12 6v3l4-4-4-4v3c-4.42 0-8 3.58-8 8 0 1.57.46 3.03 1.24 4.26L6.7 14.8A5.87 5.87 0 0 1 6 12c0-3.31 2.69-6 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.79.7 2.8 0 3.31-2.69 6-6 6v-3l-4 4 4 4v-3c4.42 0 8-3.58 8-8 0-1.57-.46-3.03-1.24-4.26z"/></svg>
+            Convert
+          </button>
+          <svg viewBox="0 0 24 24" width="20" height="20" class="jfp-arrow-icon"><path fill="currentColor" d="M4 15l8 8 8-8h-6V4H10v11z"/></svg>
+          <select id="convert-to" class="jfp-select">
+            <option value="json">JSON</option>
+            <option value="yaml">YAML</option>
+            <option value="xml">XML</option>
+            <option value="csv">CSV</option>
+            <option value="typescript">TypeScript</option>
+            <option value="querystring">Query String</option>
+          </select>
+        </div>
+        <div class="jfp-output-section">
+          <div class="jfp-input-header">
+            <span>Output</span>
+            <button id="btn-copy-converted" class="jfp-btn-sm">Copy</button>
+          </div>
+          <pre id="convert-output" class="jfp-output-pre"></pre>
+        </div>
+      </div>
+
+      <!-- Query Tab -->
+      <div id="tab-query" class="jfp-tab-panel">
+        <div class="jfp-input-section">
+          <div class="jfp-input-header">
+            <span>JSON Data</span>
+          </div>
+          <textarea id="query-input" class="jfp-editor" placeholder="Paste JSON to query..."></textarea>
+        </div>
+        <div class="jfp-toolbar">
+          <select id="query-type" class="jfp-select">
+            <option value="jsonpath">JSONPath</option>
+            <option value="jq">jq-style</option>
+          </select>
+          <input type="text" id="query-expression" class="jfp-query-input" placeholder="$.store.books[*].author or .store.books[].author">
+          <button id="btn-query" class="jfp-btn">
+            <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+            Execute
+          </button>
+        </div>
+        <div class="jfp-output-section">
+          <div class="jfp-input-header">
+            <span>Result</span>
+            <span id="query-count" class="jfp-result-count"></span>
+          </div>
+          <div id="query-output" class="jfp-query-output"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Context Menu -->
+    <div id="context-menu" class="jfp-context-menu">
+      <button class="jfp-context-item" data-action="copy-path">Copy Path</button>
+      <button class="jfp-context-item" data-action="copy-path-jsonpath">Copy JSONPath</button>
+      <button class="jfp-context-item" data-action="copy-value">Copy Value</button>
+      <button class="jfp-context-item" data-action="copy-node">Copy Node</button>
+      <div class="jfp-context-divider"></div>
+      <button class="jfp-context-item" data-action="expand-all">Expand All</button>
+      <button class="jfp-context-item" data-action="collapse-all">Collapse All</button>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toast-container" class="jfp-toast-container"></div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="../src/js/core/JsonEngine.js"></script>
+  <script src="../src/js/core/JsonDiff.js"></script>
+  <script src="../src/js/core/ThemeManager.js"></script>
+  <script src="../src/js/converters/Converters.js"></script>
+  <script src="../src/js/views/TreeView.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,1536 @@
+/**
+ * JSON Formatter Pro - Popup Styles (FIXED)
+ */
+
+/* ==================== Base ==================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  width: 800px !important;
+  height: 600px !important;
+  max-width: 800px !important;
+  max-height: 600px !important;
+  overflow: hidden !important;
+  overflow-x: hidden !important;
+  overflow-y: hidden !important;
+  scrollbar-width: none !important; /* Firefox */
+}
+
+html::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+body {
+  width: 800px !important;
+  height: 600px !important;
+  max-width: 800px !important;
+  max-height: 600px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  overflow-x: hidden !important;
+  overflow-y: hidden !important;
+  position: relative !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  scrollbar-width: none !important; /* Firefox */
+}
+
+body::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+body.dark {
+  background: #1e1e2e;
+  color: #cdd6f4;
+}
+
+body.light {
+  background: #ffffff;
+  color: #1e1e2e;
+}
+
+.jfp-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  max-height: 600px;
+  min-height: 0;
+  overflow: hidden !important;
+  position: relative;
+}
+
+/* ==================== Split Layout ==================== */
+.jfp-split-container {
+  display: flex;
+  flex: 1 1 0;
+  gap: 0;
+  overflow: hidden !important;
+  min-height: 0 !important;
+  max-height: 100%;
+}
+
+.jfp-left-panel {
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #313244;
+  overflow: hidden;
+  min-height: 0;
+}
+
+body.light .jfp-left-panel {
+  border-right-color: #e0e0e0;
+}
+
+.jfp-right-panel {
+  width: 55%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 0;
+}
+
+.jfp-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  flex-shrink: 0;
+}
+
+body.dark .jfp-panel-header {
+  background: #181825;
+  border-bottom: 1px solid #313244;
+  color: #a6adc8;
+}
+
+body.light .jfp-panel-header {
+  background: #f5f5f5;
+  border-bottom: 1px solid #e0e0e0;
+  color: #666;
+}
+
+.jfp-editor-full {
+  flex: 1 1 0;
+  width: 100%;
+  min-height: 0 !important;
+  padding: 12px;
+  font-family: 'SF Mono', 'Fira Code', 'Monaco', 'Consolas', monospace;
+  font-size: 12px;
+  line-height: 1.5;
+  border: none;
+  resize: none;
+  outline: none;
+  overflow: auto;
+}
+
+body.dark .jfp-editor-full {
+  background: #11111b;
+  color: #cdd6f4;
+}
+
+body.light .jfp-editor-full {
+  background: #fafafa;
+  color: #1e1e2e;
+}
+
+.jfp-toolbar-compact {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+
+body.dark .jfp-toolbar-compact {
+  background: #181825;
+  border-top: 1px solid #313244;
+}
+
+body.light .jfp-toolbar-compact {
+  background: #f5f5f5;
+  border-top: 1px solid #e0e0e0;
+}
+
+.jfp-view-tabs-inline {
+  display: flex;
+  gap: 4px;
+}
+
+.jfp-view-tabs-inline .jfp-view-tab {
+  padding: 4px 10px;
+  font-size: 11px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 4px;
+  color: inherit;
+  opacity: 0.6;
+}
+
+.jfp-view-tabs-inline .jfp-view-tab:hover {
+  opacity: 0.9;
+}
+
+.jfp-view-tabs-inline .jfp-view-tab.active {
+  opacity: 1;
+  background: #89b4fa !important;
+  color: #1e1e2e !important;
+}
+
+.jfp-output-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.jfp-search-bar-compact {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  flex-shrink: 0;
+}
+
+body.dark .jfp-search-bar-compact {
+  background: #1e1e2e;
+  border-bottom: 1px solid #313244;
+}
+
+body.light .jfp-search-bar-compact {
+  background: #fff;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.jfp-output-area {
+  flex: 1 1 0;
+  overflow: auto;
+  min-height: 0 !important;
+  max-height: 100%;
+}
+
+.jfp-stats-compact {
+  display: flex;
+  gap: 16px;
+  padding: 6px 12px;
+  font-size: 11px;
+  flex-shrink: 0;
+}
+
+body.dark .jfp-stats-compact {
+  background: #181825;
+  border-top: 1px solid #313244;
+  color: #a6adc8;
+}
+
+body.light .jfp-stats-compact {
+  background: #f5f5f5;
+  border-top: 1px solid #e0e0e0;
+  color: #666;
+}
+
+.jfp-stats-compact strong {
+  color: #89b4fa;
+}
+
+/* ==================== Header ==================== */
+.jfp-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  flex-shrink: 0;
+}
+
+body.dark .jfp-header {
+  background: #181825;
+  border-bottom: 1px solid #313244;
+}
+
+body.light .jfp-header {
+  background: #f5f5f5;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.jfp-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: 4px;
+}
+
+.jfp-logo svg {
+  color: #89b4fa;
+  flex-shrink: 0;
+}
+
+.jfp-logo-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.jfp-title {
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.jfp-author {
+  font-size: 10px;
+  opacity: 0.6;
+  font-weight: 400;
+}
+
+.jfp-header-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.jfp-header-actions .jfp-btn-icon {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.jfp-header-actions .jfp-btn-icon:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+body.dark .jfp-header-actions .jfp-btn-icon svg {
+  color: #cdd6f4 !important;
+  fill: #cdd6f4 !important;
+}
+
+body.light .jfp-header-actions .jfp-btn-icon svg {
+  color: #4c4f69 !important;
+  fill: #4c4f69 !important;
+}
+
+body.light .jfp-header-actions .jfp-btn-icon:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+/* ==================== Tabs ==================== */
+.jfp-tabs {
+  display: flex;
+  padding: 0 16px;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+body.dark .jfp-tabs {
+  background: #181825;
+  border-bottom: 1px solid #313244;
+}
+
+body.light .jfp-tabs {
+  background: #f5f5f5;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.jfp-tab {
+  padding: 10px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  border: none;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: all 0.15s ease;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+}
+
+.jfp-tab:hover {
+  opacity: 0.9;
+}
+
+.jfp-tab.active {
+  opacity: 1;
+  border-bottom-color: #89b4fa;
+}
+
+/* ==================== Tab Content ==================== */
+.jfp-tab-content {
+  flex: 1 1 0;
+  overflow: hidden !important;
+  display: flex;
+  flex-direction: column;
+  min-height: 0 !important;
+  max-height: calc(100% - 90px); /* Account for header + tabs */
+}
+
+.jfp-tab-panel {
+  display: none;
+  flex: 1 1 0;
+  flex-direction: column;
+  overflow: hidden !important;
+  min-height: 0 !important;
+}
+
+.jfp-tab-panel.active {
+  display: flex;
+}
+
+/* ==================== Input Section ==================== */
+.jfp-input-section {
+  padding: 12px 16px;
+  flex-shrink: 0;
+}
+
+.jfp-input-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.jfp-input-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.jfp-editor {
+  width: 100%;
+  height: 70px;
+  min-height: 50px;
+  max-height: 120px;
+  padding: 10px 12px;
+  font-family: 'SF Mono', 'Fira Code', 'Monaco', 'Consolas', monospace;
+  font-size: 12px;
+  line-height: 1.5;
+  border: 1px solid;
+  border-radius: 6px;
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+body.dark .jfp-editor {
+  background: #11111b;
+  color: #cdd6f4;
+  border-color: #313244;
+}
+
+body.light .jfp-editor {
+  background: #fafafa;
+  color: #1e1e2e;
+  border-color: #e0e0e0;
+}
+
+.jfp-editor:focus {
+  border-color: #89b4fa;
+}
+
+.jfp-input-error {
+  margin-top: 6px;
+  padding: 8px 10px;
+  font-size: 12px;
+  border-radius: 4px;
+  display: none;
+}
+
+.jfp-input-error.show {
+  display: block;
+  background: #f38ba820;
+  color: #f38ba8;
+  border: 1px solid #f38ba840;
+}
+
+/* ==================== Toolbar ==================== */
+.jfp-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+}
+
+body.dark .jfp-toolbar {
+  background: #181825;
+  border-top: 1px solid #313244;
+  border-bottom: 1px solid #313244;
+}
+
+body.light .jfp-toolbar {
+  background: #f5f5f5;
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.jfp-toolbar-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.jfp-toolbar-divider {
+  width: 1px;
+  height: 20px;
+  background: currentColor;
+  opacity: 0.2;
+}
+
+/* ==================== Buttons ==================== */
+.jfp-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  font-size: 12px;
+  font-weight: 500;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+body.dark .jfp-btn {
+  background: #313244;
+  color: #cdd6f4;
+}
+
+body.light .jfp-btn {
+  background: #e0e0e0;
+  color: #1e1e2e;
+}
+
+.jfp-btn:hover {
+  opacity: 0.85;
+}
+
+.jfp-btn:active {
+  transform: scale(0.98);
+}
+
+.jfp-btn-primary {
+  background: #89b4fa !important;
+  color: #1e1e2e !important;
+}
+
+.jfp-btn-icon {
+  padding: 7px;
+}
+
+.jfp-btn-sm {
+  padding: 4px 10px;
+  font-size: 11px;
+  font-weight: 500;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+body.dark .jfp-btn-sm {
+  background: #45475a;
+  color: #cdd6f4;
+}
+
+body.light .jfp-btn-sm {
+  background: #d0d0d0;
+  color: #1e1e2e;
+}
+
+.jfp-btn-sm:hover {
+  opacity: 0.85;
+}
+
+.jfp-btn-sm:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ==================== Select ==================== */
+.jfp-select {
+  padding: 6px 10px;
+  font-size: 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  outline: none;
+}
+
+body.dark .jfp-select {
+  background: #313244;
+  color: #cdd6f4;
+}
+
+body.light .jfp-select {
+  background: #e0e0e0;
+  color: #1e1e2e;
+}
+
+/* ==================== Checkbox ==================== */
+.jfp-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.jfp-checkbox input {
+  width: 14px;
+  height: 14px;
+  cursor: pointer;
+}
+
+/* ==================== View Tabs ==================== */
+.jfp-view-tabs {
+  display: flex;
+  padding: 0 16px;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+body.dark .jfp-view-tabs {
+  background: #11111b;
+}
+
+body.light .jfp-view-tabs {
+  background: #fafafa;
+}
+
+.jfp-view-tab {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 14px;
+  font-size: 11px;
+  font-weight: 500;
+  border: none;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: all 0.15s ease;
+  border-radius: 4px 4px 0 0;
+}
+
+.jfp-view-tab:hover {
+  opacity: 0.8;
+}
+
+.jfp-view-tab.active {
+  opacity: 1;
+}
+
+body.dark .jfp-view-tab.active {
+  background: #1e1e2e;
+}
+
+body.light .jfp-view-tab.active {
+  background: #ffffff;
+}
+
+/* ==================== Output Section ==================== */
+.jfp-output-section {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 0 !important;
+  position: relative;
+}
+
+.jfp-search-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  flex-shrink: 0;
+}
+
+body.dark .jfp-search-bar {
+  background: #181825;
+  border-bottom: 1px solid #313244;
+}
+
+body.light .jfp-search-bar {
+  background: #f5f5f5;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.jfp-search-input {
+  flex: 1;
+  padding: 6px 10px;
+  font-size: 12px;
+  border: none;
+  border-radius: 4px;
+  outline: none;
+}
+
+body.dark .jfp-search-input {
+  background: #313244;
+  color: #cdd6f4;
+}
+
+body.light .jfp-search-input {
+  background: #e0e0e0;
+  color: #1e1e2e;
+}
+
+.jfp-search-results {
+  font-size: 11px;
+  opacity: 0.6;
+  white-space: nowrap;
+}
+
+/* ==================== Breadcrumb ==================== */
+.jfp-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 16px;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 11px;
+  overflow-x: auto;
+  flex-shrink: 0;
+}
+
+body.dark .jfp-breadcrumb {
+  background: #11111b;
+  border-bottom: 1px solid #313244;
+}
+
+body.light .jfp-breadcrumb {
+  background: #fafafa;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.jfp-breadcrumb-item {
+  cursor: pointer;
+  opacity: 0.6;
+  white-space: nowrap;
+}
+
+.jfp-breadcrumb-item:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+.jfp-breadcrumb-item.active {
+  opacity: 1;
+  color: #89b4fa;
+}
+
+.jfp-breadcrumb-separator {
+  opacity: 0.3;
+}
+
+/* ==================== Output Views ==================== */
+.jfp-output-view {
+  display: none;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.jfp-output-view.active {
+  display: block;
+}
+
+body.dark .jfp-output-view {
+  background: #1e1e2e;
+}
+
+body.light .jfp-output-view {
+  background: #ffffff;
+}
+
+/* ==================== TREE VIEW STYLES (CRITICAL) ==================== */
+.jfp-tree-view {
+  padding: 12px 16px;
+  padding-bottom: 24px;
+  font-family: 'SF Mono', 'Fira Code', 'Monaco', 'Consolas', monospace;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* Force colors on all tree elements */
+body.dark .jfp-tree-view,
+body.dark .jfp-tree-view * {
+  color: #e2e8f0;
+}
+
+body.light .jfp-tree-view,
+body.light .jfp-tree-view * {
+  color: #1e293b;
+}
+
+.jfp-node {
+  margin: 2px 0;
+}
+
+.jfp-complex {
+  position: relative;
+}
+
+.jfp-header {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 2px 0;
+}
+
+.jfp-header:hover {
+  opacity: 0.85;
+}
+
+/* Toggle Arrow */
+.jfp-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  margin-right: 4px;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+  border-radius: 3px;
+  flex-shrink: 0;
+  font-size: 10px;
+}
+
+body.dark .jfp-tree-view .jfp-toggle,
+body.dark .jfp-toggle {
+  color: #fbbf24 !important; /* Yellow/gold arrow */
+}
+
+body.light .jfp-tree-view .jfp-toggle,
+body.light .jfp-toggle {
+  color: #d97706 !important; /* Orange arrow */
+}
+
+.jfp-toggle:hover {
+  background: rgba(251, 191, 36, 0.2);
+}
+
+/* Rotate arrow when expanded */
+.jfp-complex.jfp-expanded > .jfp-header > .jfp-toggle {
+  transform: rotate(90deg);
+}
+
+/* Children container - HIDDEN by default */
+.jfp-children {
+  display: none;
+  margin-left: 12px;
+  padding-left: 16px;
+  border-left: 1px dashed #45475a;
+}
+
+/* Show children when expanded */
+.jfp-complex.jfp-expanded > .jfp-children {
+  display: block;
+}
+
+/* Hide count and preview when expanded */
+.jfp-complex.jfp-expanded > .jfp-header > .jfp-count,
+.jfp-complex.jfp-expanded > .jfp-header > .jfp-preview {
+  display: none;
+}
+
+/* Show close bracket when expanded */
+.jfp-close-bracket {
+  display: none;
+}
+
+.jfp-complex.jfp-expanded > .jfp-close-bracket {
+  display: block;
+  margin-left: 0;
+}
+
+/* Key styling */
+.jfp-key {
+  cursor: pointer;
+  font-weight: 500;
+}
+
+body.dark .jfp-tree-view .jfp-key,
+body.dark .jfp-key {
+  color: #7dd3fc !important; /* Bright cyan-blue */
+}
+
+body.light .jfp-tree-view .jfp-key,
+body.light .jfp-key {
+  color: #0369a1 !important; /* Strong blue */
+}
+
+.jfp-key:hover {
+  text-decoration: underline;
+}
+
+/* Colon and brackets */
+.jfp-colon {
+  margin: 0 4px 0 0;
+}
+
+body.dark .jfp-tree-view .jfp-colon,
+body.dark .jfp-colon {
+  color: #94a3b8 !important;
+}
+
+body.light .jfp-tree-view .jfp-colon,
+body.light .jfp-colon {
+  color: #475569 !important;
+}
+
+body.dark .jfp-tree-view .jfp-bracket,
+body.dark .jfp-bracket {
+  color: #f8fafc !important;
+  font-weight: 600;
+}
+
+body.light .jfp-tree-view .jfp-bracket,
+body.light .jfp-bracket {
+  color: #1e293b !important;
+  font-weight: 600;
+}
+
+/* Item count */
+.jfp-count {
+  margin-left: 8px;
+  font-size: 0.85em;
+}
+
+body.dark .jfp-tree-view .jfp-count,
+body.dark .jfp-count {
+  color: #94a3b8 !important;
+}
+
+body.light .jfp-tree-view .jfp-count,
+body.light .jfp-count {
+  color: #64748b !important;
+}
+
+/* Preview */
+.jfp-preview {
+  margin-left: 8px;
+  font-size: 0.9em;
+  opacity: 0.5;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Comma */
+.jfp-comma {
+  opacity: 1;
+}
+
+body.dark .jfp-tree-view .jfp-comma,
+body.dark .jfp-comma {
+  color: #94a3b8 !important;
+}
+
+body.light .jfp-tree-view .jfp-comma,
+body.light .jfp-comma {
+  color: #64748b !important;
+}
+
+/* Primitive values */
+.jfp-primitive {
+  display: block;
+  padding: 2px 0;
+}
+
+/* String values */
+body.dark .jfp-tree-view .jfp-value.jfp-string,
+body.dark .jfp-value.jfp-string {
+  color: #4ade80 !important; /* Bright green */
+}
+
+body.light .jfp-tree-view .jfp-value.jfp-string,
+body.light .jfp-value.jfp-string {
+  color: #15803d !important; /* Strong green */
+}
+
+/* Number values */
+body.dark .jfp-tree-view .jfp-value.jfp-number,
+body.dark .jfp-value.jfp-number {
+  color: #fb923c !important; /* Bright orange */
+}
+
+body.light .jfp-tree-view .jfp-value.jfp-number,
+body.light .jfp-value.jfp-number {
+  color: #c2410c !important; /* Strong orange */
+}
+
+/* Boolean values */
+body.dark .jfp-tree-view .jfp-value.jfp-boolean,
+body.dark .jfp-value.jfp-boolean {
+  color: #c084fc !important; /* Bright purple */
+}
+
+body.light .jfp-tree-view .jfp-value.jfp-boolean,
+body.light .jfp-value.jfp-boolean {
+  color: #7c3aed !important; /* Strong purple */
+}
+
+/* Null values */
+body.dark .jfp-tree-view .jfp-value.jfp-null,
+body.dark .jfp-value.jfp-null {
+  color: #f87171 !important; /* Red-ish for null */
+  font-style: italic;
+}
+
+body.light .jfp-tree-view .jfp-value.jfp-null,
+body.light .jfp-value.jfp-null {
+  color: #dc2626 !important; /* Red for null */
+  font-style: italic;
+}
+
+/* Links */
+.jfp-link {
+  text-decoration: underline;
+}
+
+body.dark .jfp-link {
+  color: #89b4fa;
+}
+
+body.light .jfp-link {
+  color: #1e66f5;
+}
+
+/* Highlight animation */
+.jfp-highlight {
+  animation: highlight-pulse 2s ease-out;
+}
+
+@keyframes highlight-pulse {
+  0% { background-color: rgba(137, 180, 250, 0.4); }
+  100% { background-color: transparent; }
+}
+
+/* Search match */
+.jfp-search-match {
+  background-color: rgba(249, 226, 175, 0.3);
+  border-radius: 2px;
+}
+
+/* ==================== Raw View ==================== */
+.jfp-output-pre {
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 12px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-break: break-all;
+  padding: 12px;
+  border-radius: 6px;
+  overflow: auto;
+  max-height: 200px;
+}
+
+body.dark .jfp-output-pre {
+  background: #11111b;
+}
+
+body.light .jfp-output-pre {
+  background: #fafafa;
+}
+
+#output-raw {
+  padding: 12px 16px;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+#output-raw .jfp-line {
+  display: flex;
+  white-space: pre;
+}
+
+#output-raw .jfp-line-number {
+  width: 40px;
+  text-align: right;
+  padding-right: 16px;
+  opacity: 0.4;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+/* ==================== Table View ==================== */
+#output-table {
+  padding: 12px 16px;
+  overflow: auto;
+}
+
+.jfp-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.jfp-table th,
+.jfp-table td {
+  padding: 8px 12px;
+  text-align: left;
+  border: 1px solid;
+}
+
+body.dark .jfp-table th,
+body.dark .jfp-table td {
+  border-color: #313244;
+}
+
+body.light .jfp-table th,
+body.light .jfp-table td {
+  border-color: #e0e0e0;
+}
+
+body.dark .jfp-table th {
+  background: #181825;
+}
+
+body.light .jfp-table th {
+  background: #f5f5f5;
+}
+
+/* ==================== Stats Bar ==================== */
+.jfp-stats-bar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 8px 16px;
+  font-size: 11px;
+  flex-shrink: 0;
+}
+
+body.dark .jfp-stats-bar {
+  background: #181825;
+  border-top: 1px solid #313244;
+}
+
+body.light .jfp-stats-bar {
+  background: #f5f5f5;
+  border-top: 1px solid #e0e0e0;
+}
+
+.jfp-stat {
+  opacity: 0.7;
+}
+
+.jfp-stat strong {
+  color: #89b4fa;
+}
+
+.jfp-stat-separator {
+  opacity: 0.3;
+}
+
+/* ==================== Diff Tab ==================== */
+.jfp-diff-inputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding: 12px 16px;
+  flex-shrink: 0;
+}
+
+.jfp-diff-input .jfp-editor {
+  height: 100px;
+}
+
+.jfp-diff-error {
+  flex: 1;
+  padding: 6px 12px;
+  font-size: 12px;
+  border-radius: 4px;
+  display: none;
+}
+
+.jfp-diff-error.show {
+  display: block;
+  background: #f38ba820;
+  color: #f38ba8;
+  border: 1px solid #f38ba840;
+}
+
+body.light .jfp-diff-error.show {
+  background: #dc262615;
+  color: #dc2626;
+  border: 1px solid #dc262630;
+}
+
+.jfp-diff-output {
+  flex: 1 1 0;
+  overflow: auto;
+  padding: 12px 16px;
+  min-height: 0 !important;
+  max-height: 100%;
+}
+
+.jfp-diff-summary {
+  padding: 10px 16px;
+  font-size: 12px;
+  display: flex;
+  gap: 16px;
+  flex-shrink: 0;
+}
+
+body.dark .jfp-diff-summary {
+  background: #181825;
+  border-top: 1px solid #313244;
+}
+
+body.light .jfp-diff-summary {
+  background: #f5f5f5;
+  border-top: 1px solid #e0e0e0;
+}
+
+.jfp-diff-stat {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.jfp-diff-badge {
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.jfp-diff-badge.added {
+  background: #a6e3a120;
+  color: #a6e3a1;
+}
+
+.jfp-diff-badge.removed {
+  background: #f38ba820;
+  color: #f38ba8;
+}
+
+.jfp-diff-badge.modified {
+  background: #f9e2af20;
+  color: #f9e2af;
+}
+
+.jfp-diff-view {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+
+.jfp-diff-panel {
+  overflow: auto;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 12px;
+}
+
+.jfp-diff-panel:first-child {
+  border-right: 1px solid #313244;
+}
+
+.jfp-diff-header {
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 600;
+  padding: 8px;
+  border-bottom: 1px solid #313244;
+  background: #181825;
+}
+
+.jfp-diff-panel pre {
+  margin: 0;
+  padding: 12px;
+  white-space: pre-wrap;
+}
+
+/* ==================== Query Tab ==================== */
+.jfp-query-input {
+  flex: 1;
+  padding: 7px 12px;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 12px;
+  border: none;
+  border-radius: 4px;
+  outline: none;
+}
+
+body.dark .jfp-query-input {
+  background: #313244;
+  color: #cdd6f4;
+}
+
+body.light .jfp-query-input {
+  background: #e0e0e0;
+  color: #1e1e2e;
+}
+
+.jfp-result-count {
+  font-size: 11px;
+  opacity: 0.6;
+}
+
+.jfp-query-output {
+  flex: 1 1 0;
+  overflow: auto;
+  padding: 12px 16px;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 12px;
+  white-space: pre-wrap;
+  min-height: 0 !important;
+  max-height: 100%;
+}
+
+/* ==================== Context Menu ==================== */
+.jfp-context-menu {
+  position: fixed;
+  min-width: 180px;
+  padding: 6px 0;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  z-index: 10000;
+  display: none;
+}
+
+body.dark .jfp-context-menu {
+  background: #313244;
+  border: 1px solid #45475a;
+}
+
+body.light .jfp-context-menu {
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+}
+
+.jfp-context-menu.show {
+  display: block;
+}
+
+.jfp-context-item {
+  display: block;
+  width: 100%;
+  padding: 8px 14px;
+  font-size: 12px;
+  text-align: left;
+  border: none;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  transition: background 0.1s ease;
+}
+
+.jfp-context-item:hover {
+  background: #89b4fa20;
+}
+
+.jfp-context-divider {
+  height: 1px;
+  margin: 6px 0;
+  background: currentColor;
+  opacity: 0.15;
+}
+
+/* ==================== Toast ==================== */
+.jfp-toast-container {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  z-index: 10001;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.jfp-toast {
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  animation: toast-in 0.2s ease;
+}
+
+.jfp-toast.success {
+  background: #a6e3a1;
+  color: #1e1e2e;
+}
+
+.jfp-toast.error {
+  background: #f38ba8;
+  color: #1e1e2e;
+}
+
+.jfp-toast.info {
+  background: #89b4fa;
+  color: #1e1e2e;
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==================== Arrow Icon ==================== */
+.jfp-arrow-icon {
+  opacity: 0.5;
+  transform: rotate(-90deg);
+}
+
+/* ==================== Scrollbar ==================== */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+body.dark ::-webkit-scrollbar-thumb {
+  background: #45475a;
+  border-radius: 4px;
+}
+
+body.light ::-webkit-scrollbar-thumb {
+  background: #c0c0c0;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  opacity: 0.8;
+}
+
+/* ==================== CRITICAL OVERRIDES ==================== */
+/* Override main.css rules that cause scrolling issues */
+.jfp-container .jfp-editor {
+  min-height: 50px !important;
+  max-height: 120px !important;
+}
+
+.jfp-container .jfp-diff-input .jfp-editor {
+  min-height: 80px !important;
+  max-height: 100px !important;
+  height: 100px !important;
+}
+
+/* Force fixed dimensions on popup */
+#app.jfp-container {
+  height: 600px !important;
+  max-height: 600px !important;
+  overflow: hidden !important;
+}
+
+/* Header ~50px, Tabs ~42px = 92px, Content gets remaining 508px */
+.jfp-header {
+  height: 50px !important;
+  min-height: 50px !important;
+  max-height: 50px !important;
+}
+
+.jfp-tabs {
+  height: 42px !important;
+  min-height: 42px !important;
+  max-height: 42px !important;
+}
+
+.jfp-tab-content {
+  height: calc(600px - 92px) !important;
+  max-height: calc(600px - 92px) !important;
+}
+
+/* Split container takes full content height */
+.jfp-split-container {
+  height: 100% !important;
+  max-height: 100% !important;
+}
+
+/* Left panel: header 32px, toolbar 50px = 82px, textarea gets rest */
+.jfp-left-panel .jfp-panel-header {
+  height: 32px !important;
+  min-height: 32px !important;
+  max-height: 32px !important;
+}
+
+.jfp-toolbar-compact {
+  height: 50px !important;
+  min-height: 50px !important;
+  max-height: 50px !important;
+}
+
+/* Right panel: header 32px, search 36px, stats 32px = 100px, output gets rest */
+.jfp-right-panel .jfp-panel-header {
+  height: 32px !important;
+  min-height: 32px !important;
+  max-height: 32px !important;
+}
+
+.jfp-search-bar-compact {
+  height: 36px !important;
+  min-height: 36px !important;
+  max-height: 36px !important;
+}
+
+.jfp-stats-compact {
+  height: 32px !important;
+  min-height: 32px !important;
+  max-height: 32px !important;
+}
+
+/* Output area gets calculated remaining height */
+.jfp-output-area {
+  height: calc(100% - 100px) !important;
+  max-height: calc(100% - 100px) !important;
+}
+
+/* Left panel textarea: total height 508px - header 32px - toolbar 50px = 426px */
+.jfp-left-panel .jfp-editor-full {
+  height: calc(100% - 82px) !important;
+  max-height: calc(100% - 82px) !important;
+}
+
+/* Ensure panels have proper height */
+.jfp-left-panel,
+.jfp-right-panel {
+  height: 100% !important;
+  max-height: 100% !important;
+}
+
+/* Error element should not add extra height - position it absolutely */
+#input-error {
+  position: absolute;
+  bottom: 52px;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
+
+/* Make left panel position relative for absolute error positioning */
+.jfp-left-panel {
+  position: relative !important;
+}

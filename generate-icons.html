@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Generate Icons</title>
+  <style>
+    body { font-family: system-ui; padding: 40px; background: #1e1e2e; color: #cdd6f4; }
+    h1 { margin-bottom: 20px; }
+    .icons { display: flex; gap: 20px; margin: 20px 0; }
+    .icon { text-align: center; }
+    canvas { background: #313244; border-radius: 8px; }
+    button {
+      padding: 12px 24px;
+      background: #89b4fa;
+      color: #1e1e2e;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 20px;
+    }
+    button:hover { background: #74a8f7; }
+    p { opacity: 0.7; margin: 20px 0; }
+  </style>
+</head>
+<body>
+  <h1>JSON Formatter Pro - Icon Generator</h1>
+  <p>Click the button below to download all icon sizes. Then move them to <code>assets/icons/</code></p>
+
+  <div class="icons">
+    <div class="icon">
+      <canvas id="c16" width="16" height="16"></canvas>
+      <div>16x16</div>
+    </div>
+    <div class="icon">
+      <canvas id="c32" width="32" height="32"></canvas>
+      <div>32x32</div>
+    </div>
+    <div class="icon">
+      <canvas id="c48" width="48" height="48"></canvas>
+      <div>48x48</div>
+    </div>
+    <div class="icon">
+      <canvas id="c128" width="128" height="128"></canvas>
+      <div>128x128</div>
+    </div>
+  </div>
+
+  <button onclick="downloadAll()">Download All Icons</button>
+
+  <script>
+    const sizes = [16, 32, 48, 128];
+
+    function drawIcon(ctx, size) {
+      // Background gradient
+      const gradient = ctx.createLinearGradient(0, 0, size, size);
+      gradient.addColorStop(0, '#6366f1');
+      gradient.addColorStop(1, '#8b5cf6');
+
+      // Draw rounded rect
+      const radius = size * 0.1875;
+      ctx.beginPath();
+      ctx.roundRect(0, 0, size, size, radius);
+      ctx.fillStyle = gradient;
+      ctx.fill();
+
+      // Draw braces and dots in white
+      ctx.fillStyle = '#ffffff';
+      ctx.strokeStyle = '#ffffff';
+
+      const scale = size / 128;
+      ctx.save();
+      ctx.scale(scale, scale);
+
+      // Left brace
+      ctx.beginPath();
+      ctx.moveTo(32, 32);
+      ctx.lineTo(40, 32);
+      ctx.lineTo(40, 40);
+      ctx.lineTo(32, 40);
+      ctx.lineTo(32, 60);
+      ctx.bezierCurveTo(32, 66.6, 26.6, 68, 24, 68);
+      ctx.bezierCurveTo(26.6, 68, 32, 69.4, 32, 76);
+      ctx.lineTo(32, 96);
+      ctx.lineTo(40, 96);
+      ctx.lineTo(40, 104);
+      ctx.lineTo(32, 104);
+      ctx.bezierCurveTo(27.6, 104, 24, 100.4, 24, 96);
+      ctx.lineTo(24, 80);
+      ctx.bezierCurveTo(24, 75.6, 20.4, 72, 16, 72);
+      ctx.lineTo(16, 64);
+      ctx.bezierCurveTo(20.4, 64, 24, 60.4, 24, 56);
+      ctx.lineTo(24, 40);
+      ctx.bezierCurveTo(24, 35.6, 27.6, 32, 32, 32);
+      ctx.fill();
+
+      // Right brace
+      ctx.beginPath();
+      ctx.moveTo(96, 32);
+      ctx.lineTo(88, 32);
+      ctx.lineTo(88, 40);
+      ctx.lineTo(96, 40);
+      ctx.lineTo(96, 60);
+      ctx.bezierCurveTo(96, 66.6, 101.4, 68, 104, 68);
+      ctx.bezierCurveTo(101.4, 68, 96, 69.4, 96, 76);
+      ctx.lineTo(96, 96);
+      ctx.lineTo(88, 96);
+      ctx.lineTo(88, 104);
+      ctx.lineTo(96, 104);
+      ctx.bezierCurveTo(100.4, 104, 104, 100.4, 104, 96);
+      ctx.lineTo(104, 80);
+      ctx.bezierCurveTo(104, 75.6, 107.6, 72, 112, 72);
+      ctx.lineTo(112, 64);
+      ctx.bezierCurveTo(107.6, 64, 104, 60.4, 104, 56);
+      ctx.lineTo(104, 40);
+      ctx.bezierCurveTo(104, 35.6, 100.4, 32, 96, 32);
+      ctx.fill();
+
+      // Dots
+      ctx.beginPath();
+      ctx.arc(48, 64, 6, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.beginPath();
+      ctx.arc(64, 64, 6, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.beginPath();
+      ctx.arc(80, 64, 6, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.restore();
+    }
+
+    // Draw all sizes
+    sizes.forEach(size => {
+      const canvas = document.getElementById('c' + size);
+      const ctx = canvas.getContext('2d');
+      drawIcon(ctx, size);
+    });
+
+    function downloadAll() {
+      sizes.forEach(size => {
+        const canvas = document.getElementById('c' + size);
+        const link = document.createElement('a');
+        link.download = `icon${size}.png`;
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+      });
+    }
+  </script>
+</body>
+</html>

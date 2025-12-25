@@ -1,0 +1,32 @@
+{
+  "name": "json-formatter-pro",
+  "version": "1.0.0",
+  "description": "Format, validate, diff JSON with tree view, query, convert & 60+ themes",
+  "scripts": {
+    "icons": "mkdir -p assets/icons && npx svgexport assets/icons/icon.svg assets/icons/icon16.png 16:16 && npx svgexport assets/icons/icon.svg assets/icons/icon32.png 32:32 && npx svgexport assets/icons/icon.svg assets/icons/icon48.png 48:48 && npx svgexport assets/icons/icon.svg assets/icons/icon128.png 128:128",
+    "build": "npm run icons && echo 'Build complete!'",
+    "lint": "eslint src/**/*.js popup/*.js options/*.js content/*.js background/*.js",
+    "watch": "chokidar 'src/**/*.js' 'popup/**/*' 'options/**/*' -c 'echo File changed'"
+  },
+  "keywords": [
+    "json",
+    "formatter",
+    "validator",
+    "chrome-extension",
+    "browser-extension",
+    "diff",
+    "tree-view"
+  ],
+  "author": "JSON Formatter Pro Team",
+  "license": "MIT",
+  "devDependencies": {
+    "svgexport": "^0.4.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-repo/json-formatter-pro.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-repo/json-formatter-pro/issues"
+  }
+}

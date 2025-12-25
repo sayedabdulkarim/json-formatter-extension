@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JSON Formatter Pro - Settings</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="options-container">
+    <header class="options-header">
+      <div class="logo">
+        <svg viewBox="0 0 24 24" width="32" height="32">
+          <path fill="currentColor" d="M5 3h2v2H5v5a2 2 0 0 1-2 2 2 2 0 0 1 2 2v5h2v2H5c-1.07-.27-2-.9-2-2v-4a2 2 0 0 0-2-2H0v-2h1a2 2 0 0 0 2-2V5a2 2 0 0 1 2-2m14 0a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2h1v2h-1a2 2 0 0 0-2 2v4a2 2 0 0 1-2 2h-2v-2h2v-5a2 2 0 0 1 2-2 2 2 0 0 1-2-2V5h-2V3h2m-7 12a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m-4 0a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m8 0a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1z"/>
+        </svg>
+        <div>
+          <h1>JSON Formatter Pro</h1>
+          <p>Settings & Preferences</p>
+        </div>
+      </div>
+    </header>
+
+    <main class="options-main">
+      <!-- Appearance -->
+      <section class="options-section">
+        <h2>Appearance</h2>
+
+        <div class="option-row">
+          <div class="option-info">
+            <label>Theme</label>
+            <p>Choose your preferred color scheme</p>
+          </div>
+          <select id="theme-select" class="option-select">
+            <optgroup label="Dark Themes">
+              <option value="dracula">Dracula</option>
+              <option value="monokai">Monokai</option>
+              <option value="nord">Nord</option>
+              <option value="tokyo-night">Tokyo Night</option>
+              <option value="one-dark">One Dark</option>
+              <option value="material-darker">Material Darker</option>
+              <option value="github-dark">GitHub Dark</option>
+              <option value="synthwave-84">Synthwave '84</option>
+              <option value="catppuccin-mocha">Catppuccin Mocha</option>
+              <option value="gruvbox-dark">Gruvbox Dark</option>
+              <option value="palenight">Palenight</option>
+              <option value="cobalt2">Cobalt2</option>
+              <option value="night-owl">Night Owl</option>
+              <option value="ayu-dark">Ayu Dark</option>
+              <option value="vs-code-dark">VS Code Dark+</option>
+            </optgroup>
+            <optgroup label="Light Themes">
+              <option value="github-light">GitHub Light</option>
+              <option value="one-light">One Light</option>
+              <option value="solarized-light">Solarized Light</option>
+              <option value="catppuccin-latte">Catppuccin Latte</option>
+              <option value="gruvbox-light">Gruvbox Light</option>
+              <option value="ayu-light">Ayu Light</option>
+              <option value="nord-light">Nord Light</option>
+              <option value="material-lighter">Material Lighter</option>
+              <option value="vs-code-light">VS Code Light+</option>
+              <option value="quiet-light">Quiet Light</option>
+            </optgroup>
+          </select>
+        </div>
+
+        <div class="option-row">
+          <div class="option-info">
+            <label>Dark Mode</label>
+            <p>Use dark interface colors</p>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" id="dark-mode-toggle" checked>
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+
+        <div class="option-row">
+          <div class="option-info">
+            <label>Font Size</label>
+            <p>Size of code text</p>
+          </div>
+          <select id="font-size-select" class="option-select">
+            <option value="11">11px</option>
+            <option value="12">12px</option>
+            <option value="13" selected>13px</option>
+            <option value="14">14px</option>
+            <option value="15">15px</option>
+            <option value="16">16px</option>
+          </select>
+        </div>
+
+        <div class="option-row">
+          <div class="option-info">
+            <label>Font Family</label>
+            <p>Monospace font for code</p>
+          </div>
+          <select id="font-family-select" class="option-select">
+            <option value="system">System Default</option>
+            <option value="fira-code">Fira Code</option>
+            <option value="jetbrains-mono">JetBrains Mono</option>
+            <option value="source-code-pro">Source Code Pro</option>
+            <option value="monaco">Monaco</option>
+            <option value="consolas">Consolas</option>
+          </select>
+        </div>
+      </section>
+
+      <!-- Formatting -->
+      <section class="options-section">
+        <h2>Formatting</h2>
+
+        <div class="option-row">
+          <div class="option-info">
+            <label>Indentation</label>
+            <p>Number of spaces for indentation</p>
+          </div>
+          <select id="indent-select" class="option-select">
+            <option value="2" selected>2 spaces</option>
+            <option value="4">4 spaces</option>
+            <option value="tab">Tab</option>
+          </select>
+        </div>
+
+        <div class="option-row">
+          <div class="option-info">
+            <label>Sort Keys</label>
+            <p>Alphabetically sort object keys</p>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" id="sort-keys-toggle">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+
+        <div class="option-row">
+          <div class="option-info">
+            <label>Quote Style</label>
+            <p>Quote style for strings</p>
+          </div>
+          <select id="quote-style-select" class="option-select">
+            <option value="double" selected>Double quotes "..."</option>
+            <option value="single">Single quotes '...'</option>
+          </select>
+        </div>
+      </section>
+
+      <!-- Display -->
+      <section class="options-section">
+        <h2>Display</h2>
+
+        <div class="option-row">
+          <div class="option-info">
+            <label>Show Line Numbers</label>
+            <p>Display line numbers in raw view</p>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" id="line-numbers-toggle" checked>
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+
+        <div class="option-row">
+          <div class="option-info">
+            <label>Show Data Types</label>
+            <p>Display type badges next to values</p>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" id="data-types-toggle">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+
+        <div class="option-row">
+          <div class="option-info">
+            <label>Linkify URLs</label>
+            <p>Make URLs clickable links</p>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" id="linkify-toggle" checked>
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+
+        <div class="option-row">
+          <div class="option-info">
+            <label>Detect Timestamps</label>
+            <p>Show human-readable dates for Unix timestamps</p>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" id="timestamps-toggle" checked>
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+
+        <div class="option-row">
+          <div class="option-info">
+            <label>Initial Expand Level</label>
+            <p>How deep to expand tree initially</p>
+          </div>
+          <select id="expand-level-select" class="option-select">
+            <option value="1">1 level</option>
+            <option value="2" selected>2 levels</option>
+            <option value="3">3 levels</option>
+            <option value="5">5 levels</option>
+            <option value="all">All levels</option>
+          </select>
+        </div>
+      </section>
+
+      <!-- Behavior -->
+      <section class="options-section">
+        <h2>Behavior</h2>
+
+        <div class="option-row">
+          <div class="option-info">
+            <label>Auto-format JSON Pages</label>
+            <p>Automatically format JSON responses in browser</p>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" id="auto-format-toggle" checked>
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+
+        <div class="option-row">
+          <div class="option-info">
+            <label>Copy Path Format</label>
+            <p>Default format when copying paths</p>
+          </div>
+          <select id="path-format-select" class="option-select">
+            <option value="dot" selected>Dot notation (obj.key)</option>
+            <option value="bracket">Bracket notation (obj["key"])</option>
+            <option value="jsonpath">JSONPath ($.obj.key)</option>
+          </select>
+        </div>
+      </section>
+
+      <!-- Keyboard Shortcuts -->
+      <section class="options-section">
+        <h2>Keyboard Shortcuts</h2>
+
+        <div class="shortcuts-list">
+          <div class="shortcut-item">
+            <span class="shortcut-keys"><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>J</kbd></span>
+            <span class="shortcut-desc">Open JSON Formatter Pro</span>
+          </div>
+          <div class="shortcut-item">
+            <span class="shortcut-keys"><kbd>Ctrl</kbd> + <kbd>Enter</kbd></span>
+            <span class="shortcut-desc">Format JSON</span>
+          </div>
+          <div class="shortcut-item">
+            <span class="shortcut-keys"><kbd>Ctrl</kbd> + <kbd>M</kbd></span>
+            <span class="shortcut-desc">Minify JSON</span>
+          </div>
+          <div class="shortcut-item">
+            <span class="shortcut-keys"><kbd>D</kbd></span>
+            <span class="shortcut-desc">Toggle dark mode</span>
+          </div>
+          <div class="shortcut-item">
+            <span class="shortcut-keys"><kbd>[</kbd></span>
+            <span class="shortcut-desc">Collapse all nodes</span>
+          </div>
+          <div class="shortcut-item">
+            <span class="shortcut-keys"><kbd>]</kbd></span>
+            <span class="shortcut-desc">Expand all nodes</span>
+          </div>
+          <div class="shortcut-item">
+            <span class="shortcut-keys"><kbd>Ctrl</kbd> + <kbd>F</kbd></span>
+            <span class="shortcut-desc">Search</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- About -->
+      <section class="options-section">
+        <h2>About</h2>
+
+        <div class="about-info">
+          <p><strong>JSON Formatter Pro</strong> v1.0.0</p>
+          <p>The ultimate JSON toolkit for developers.</p>
+          <p class="about-features">
+            Format, validate, diff, convert, query and explore JSON data with 60+ themes.
+          </p>
+          <div class="about-links">
+            <a href="https://github.com/your-repo/json-formatter-pro" target="_blank">GitHub</a>
+            <a href="https://github.com/your-repo/json-formatter-pro/issues" target="_blank">Report Issue</a>
+            <a href="https://chrome.google.com/webstore/detail/xxx" target="_blank">Rate Extension</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="options-footer">
+      <button id="reset-btn" class="btn btn-secondary">Reset to Defaults</button>
+      <button id="save-btn" class="btn btn-primary">Save Settings</button>
+    </footer>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>

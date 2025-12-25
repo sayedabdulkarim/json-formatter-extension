@@ -1,0 +1,9 @@
+/**
+ * JSON Formatter Pro - Content Script Styles
+ * These are injected into all pages, so we use very specific selectors
+ */
+
+/* Only apply styles when we've formatted the page */
+body.jfp-formatted-page {
+  /* All styles are injected via JS for better control */
+}

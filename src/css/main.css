@@ -1,0 +1,745 @@
+/**
+ * JSON Formatter Pro - Main Styles
+ */
+
+/* ==================== CSS Variables ==================== */
+:root {
+  --jfp-font-mono: 'SF Mono', 'Fira Code', 'Monaco', 'Consolas', 'Liberation Mono', monospace;
+  --jfp-font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --jfp-font-size: 13px;
+  --jfp-line-height: 1.6;
+  --jfp-indent-size: 20px;
+  --jfp-border-radius: 6px;
+  --jfp-transition: 0.15s ease;
+}
+
+/* ==================== Base Styles ==================== */
+.jfp-container {
+  font-family: var(--jfp-font-sans);
+  font-size: 14px;
+  line-height: 1.5;
+  box-sizing: border-box;
+}
+
+.jfp-container *,
+.jfp-container *::before,
+.jfp-container *::after {
+  box-sizing: inherit;
+}
+
+/* ==================== Tree View ==================== */
+.jfp-tree-view {
+  font-family: var(--jfp-font-mono);
+  font-size: var(--jfp-font-size);
+  line-height: var(--jfp-line-height);
+  padding: 16px;
+  overflow: auto;
+  white-space: nowrap;
+}
+
+.jfp-node {
+  position: relative;
+}
+
+.jfp-node + .jfp-node {
+  margin-top: 2px;
+}
+
+/* Complex nodes (objects/arrays) */
+.jfp-complex {
+  position: relative;
+}
+
+.jfp-header {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.jfp-header:hover {
+  opacity: 0.8;
+}
+
+/* Toggle button */
+.jfp-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  margin-right: 4px;
+  cursor: pointer;
+  transition: transform var(--jfp-transition);
+  flex-shrink: 0;
+}
+
+.jfp-toggle svg {
+  width: 12px;
+  height: 12px;
+}
+
+.jfp-complex.jfp-expanded > .jfp-header > .jfp-toggle {
+  transform: rotate(90deg);
+}
+
+/* Children container */
+.jfp-children {
+  display: none;
+  padding-left: var(--jfp-indent-size);
+  border-left: 1px dashed currentColor;
+  margin-left: 7px;
+  opacity: 0.3;
+}
+
+.jfp-complex.jfp-expanded > .jfp-children {
+  display: block;
+}
+
+/* Preview and count (shown when collapsed) */
+.jfp-preview,
+.jfp-count {
+  margin-left: 8px;
+  opacity: 0.6;
+  font-size: 0.9em;
+}
+
+.jfp-complex.jfp-expanded > .jfp-header > .jfp-preview,
+.jfp-complex.jfp-expanded > .jfp-header > .jfp-count {
+  display: none;
+}
+
+/* Close bracket */
+.jfp-close-bracket {
+  display: none;
+  padding-left: var(--jfp-indent-size);
+  margin-left: -var(--jfp-indent-size);
+}
+
+.jfp-complex.jfp-expanded > .jfp-close-bracket {
+  display: inline-block;
+  padding-left: 0;
+  margin-left: 0;
+}
+
+/* Keys and values */
+.jfp-key {
+  cursor: pointer;
+}
+
+.jfp-key:hover {
+  text-decoration: underline;
+}
+
+.jfp-colon {
+  margin: 0 2px;
+}
+
+.jfp-value {
+  cursor: pointer;
+}
+
+.jfp-value:hover {
+  opacity: 0.8;
+}
+
+.jfp-primitive {
+  display: inline;
+}
+
+.jfp-comma {
+  opacity: 0.5;
+}
+
+/* Links */
+.jfp-link {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.jfp-link:hover {
+  opacity: 0.8;
+}
+
+/* Nested JSON indicator */
+.jfp-nested-json {
+  cursor: pointer;
+  border-bottom: 1px dotted currentColor;
+}
+
+/* Timestamp badge */
+.jfp-timestamp-badge {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 1px 6px;
+  font-size: 0.8em;
+  opacity: 0.7;
+  border-radius: 3px;
+  background: currentColor;
+  color: inherit;
+  filter: invert(1);
+}
+
+/* Type badge */
+.jfp-type-badge {
+  display: none;
+  margin-left: 8px;
+  padding: 1px 6px;
+  font-size: 0.75em;
+  opacity: 0.5;
+  border-radius: 3px;
+  border: 1px solid currentColor;
+  text-transform: uppercase;
+}
+
+.jfp-tree-view.show-types .jfp-type-badge {
+  display: inline-block;
+}
+
+/* Highlight animation */
+.jfp-highlight {
+  animation: jfp-highlight-pulse 2s ease-out;
+}
+
+@keyframes jfp-highlight-pulse {
+  0% { background-color: rgba(255, 255, 0, 0.3); }
+  100% { background-color: transparent; }
+}
+
+/* Search match */
+.jfp-search-match {
+  border-radius: 2px;
+}
+
+/* Line numbers */
+.jfp-tree-view.show-line-numbers {
+  counter-reset: line;
+}
+
+.jfp-tree-view.show-line-numbers .jfp-node::before {
+  counter-increment: line;
+  content: counter(line);
+  display: inline-block;
+  width: 40px;
+  text-align: right;
+  margin-right: 16px;
+  opacity: 0.4;
+  font-size: 0.85em;
+  user-select: none;
+}
+
+/* ==================== Raw View ==================== */
+.jfp-raw-view {
+  font-family: var(--jfp-font-mono);
+  font-size: var(--jfp-font-size);
+  line-height: var(--jfp-line-height);
+  padding: 16px;
+  white-space: pre-wrap;
+  word-break: break-all;
+  overflow: auto;
+}
+
+.jfp-raw-view .jfp-line {
+  display: block;
+}
+
+.jfp-raw-view .jfp-line-number {
+  display: inline-block;
+  width: 40px;
+  text-align: right;
+  margin-right: 16px;
+  opacity: 0.4;
+  user-select: none;
+}
+
+/* ==================== Table View ==================== */
+.jfp-table-view {
+  width: 100%;
+  overflow: auto;
+}
+
+.jfp-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--jfp-font-mono);
+  font-size: var(--jfp-font-size);
+}
+
+.jfp-table th,
+.jfp-table td {
+  padding: 8px 12px;
+  text-align: left;
+  border: 1px solid currentColor;
+  opacity: 0.8;
+}
+
+.jfp-table th {
+  font-weight: 600;
+  opacity: 1;
+}
+
+.jfp-table tbody tr:hover {
+  opacity: 0.9;
+}
+
+/* ==================== Diff View ==================== */
+.jfp-diff-view {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  font-family: var(--jfp-font-mono);
+  font-size: var(--jfp-font-size);
+}
+
+.jfp-diff-panel {
+  overflow: auto;
+  padding: 16px;
+  border: 1px solid currentColor;
+  opacity: 0.3;
+}
+
+.jfp-diff-panel:first-child {
+  border-right: none;
+}
+
+.jfp-diff-header {
+  font-family: var(--jfp-font-sans);
+  font-weight: 600;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid currentColor;
+  opacity: 0.5;
+}
+
+.jfp-diff-line {
+  display: block;
+  padding: 2px 8px;
+  margin: 0 -8px;
+}
+
+.jfp-diff-added {
+  padding-left: 5px;
+}
+
+.jfp-diff-removed {
+  padding-left: 5px;
+}
+
+.jfp-diff-modified {
+  padding-left: 5px;
+}
+
+/* ==================== Editor ==================== */
+.jfp-editor {
+  width: 100%;
+  min-height: 200px;
+  padding: 16px;
+  font-family: var(--jfp-font-mono);
+  font-size: var(--jfp-font-size);
+  line-height: var(--jfp-line-height);
+  border: 1px solid currentColor;
+  border-radius: var(--jfp-border-radius);
+  resize: vertical;
+  outline: none;
+}
+
+.jfp-editor:focus {
+  box-shadow: 0 0 0 2px currentColor;
+  opacity: 0.2;
+}
+
+/* ==================== Toolbar ==================== */
+.jfp-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-bottom: 1px solid currentColor;
+  opacity: 0.2;
+  flex-wrap: wrap;
+}
+
+.jfp-toolbar-group {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.jfp-toolbar-divider {
+  width: 1px;
+  height: 20px;
+  background: currentColor;
+  opacity: 0.3;
+  margin: 0 8px;
+}
+
+.jfp-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 6px 12px;
+  font-family: var(--jfp-font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  border: 1px solid currentColor;
+  border-radius: var(--jfp-border-radius);
+  cursor: pointer;
+  transition: all var(--jfp-transition);
+  background: transparent;
+  color: inherit;
+  opacity: 0.8;
+}
+
+.jfp-btn:hover {
+  opacity: 1;
+}
+
+.jfp-btn:active {
+  transform: scale(0.98);
+}
+
+.jfp-btn.active {
+  opacity: 1;
+}
+
+.jfp-btn-icon {
+  padding: 6px;
+}
+
+.jfp-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* ==================== Search Bar ==================== */
+.jfp-search-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-bottom: 1px solid currentColor;
+  opacity: 0.2;
+}
+
+.jfp-search-input {
+  flex: 1;
+  padding: 6px 12px;
+  font-family: var(--jfp-font-sans);
+  font-size: 13px;
+  border: 1px solid currentColor;
+  border-radius: var(--jfp-border-radius);
+  background: transparent;
+  color: inherit;
+  outline: none;
+  opacity: 0.5;
+}
+
+.jfp-search-input:focus {
+  opacity: 0.8;
+}
+
+.jfp-search-input::placeholder {
+  opacity: 0.5;
+}
+
+.jfp-search-results {
+  font-size: 12px;
+  opacity: 0.6;
+  white-space: nowrap;
+}
+
+/* ==================== Tabs ==================== */
+.jfp-tabs {
+  display: flex;
+  border-bottom: 1px solid currentColor;
+  opacity: 0.2;
+}
+
+.jfp-tab {
+  padding: 10px 16px;
+  font-family: var(--jfp-font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  border: none;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: all var(--jfp-transition);
+}
+
+.jfp-tab:hover {
+  opacity: 0.8;
+}
+
+.jfp-tab.active {
+  opacity: 1;
+  border-bottom: 2px solid currentColor;
+  margin-bottom: -1px;
+}
+
+/* ==================== Modal ==================== */
+.jfp-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}
+
+.jfp-modal {
+  max-width: 600px;
+  max-height: 80vh;
+  overflow: auto;
+  border-radius: var(--jfp-border-radius);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+}
+
+.jfp-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid currentColor;
+  opacity: 0.2;
+}
+
+.jfp-modal-title {
+  font-family: var(--jfp-font-sans);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.jfp-modal-close {
+  padding: 4px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: inherit;
+  opacity: 0.6;
+}
+
+.jfp-modal-close:hover {
+  opacity: 1;
+}
+
+.jfp-modal-body {
+  padding: 20px;
+}
+
+.jfp-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 16px 20px;
+  border-top: 1px solid currentColor;
+  opacity: 0.2;
+}
+
+/* ==================== Toast Notifications ==================== */
+.jfp-toast-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 10001;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.jfp-toast {
+  padding: 12px 20px;
+  border-radius: var(--jfp-border-radius);
+  font-family: var(--jfp-font-sans);
+  font-size: 13px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  animation: jfp-toast-in 0.3s ease;
+}
+
+.jfp-toast.success {
+  background: #10b981;
+  color: white;
+}
+
+.jfp-toast.error {
+  background: #ef4444;
+  color: white;
+}
+
+.jfp-toast.info {
+  background: #3b82f6;
+  color: white;
+}
+
+@keyframes jfp-toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==================== Breadcrumb ==================== */
+.jfp-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 12px;
+  font-family: var(--jfp-font-mono);
+  font-size: 12px;
+  border-bottom: 1px solid currentColor;
+  opacity: 0.2;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.jfp-breadcrumb-item {
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+.jfp-breadcrumb-item:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+.jfp-breadcrumb-item.active {
+  opacity: 1;
+  font-weight: 600;
+}
+
+.jfp-breadcrumb-separator {
+  opacity: 0.4;
+}
+
+/* ==================== Stats Panel ==================== */
+.jfp-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 12px;
+  padding: 16px;
+}
+
+.jfp-stat-item {
+  padding: 12px;
+  border: 1px solid currentColor;
+  border-radius: var(--jfp-border-radius);
+  opacity: 0.2;
+}
+
+.jfp-stat-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin-bottom: 4px;
+}
+
+.jfp-stat-value {
+  font-size: 20px;
+  font-weight: 600;
+  font-family: var(--jfp-font-mono);
+}
+
+/* ==================== Loading ==================== */
+.jfp-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+.jfp-spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid currentColor;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: jfp-spin 0.8s linear infinite;
+  opacity: 0.5;
+}
+
+@keyframes jfp-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ==================== Error Display ==================== */
+.jfp-error {
+  padding: 16px;
+  border-radius: var(--jfp-border-radius);
+  font-family: var(--jfp-font-mono);
+  font-size: 13px;
+}
+
+.jfp-error-title {
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.jfp-error-message {
+  opacity: 0.8;
+  margin-bottom: 12px;
+}
+
+.jfp-error-context {
+  padding: 12px;
+  border-radius: 4px;
+  overflow-x: auto;
+}
+
+.jfp-error-line {
+  display: block;
+}
+
+.jfp-error-line.error-line {
+  font-weight: 600;
+}
+
+.jfp-error-pointer {
+  display: block;
+}
+
+/* ==================== Responsive ==================== */
+@media (max-width: 768px) {
+  .jfp-diff-view {
+    grid-template-columns: 1fr;
+  }
+
+  .jfp-diff-panel:first-child {
+    border-right: 1px solid currentColor;
+    border-bottom: none;
+  }
+
+  .jfp-toolbar {
+    flex-wrap: wrap;
+  }
+
+  .jfp-modal {
+    margin: 16px;
+    max-width: calc(100% - 32px);
+  }
+}
+
+/* ==================== Print Styles ==================== */
+@media print {
+  .jfp-toolbar,
+  .jfp-search-bar,
+  .jfp-tabs,
+  .jfp-toast-container {
+    display: none !important;
+  }
+
+  .jfp-tree-view {
+    padding: 0;
+  }
+
+  .jfp-complex.jfp-expanded > .jfp-children {
+    display: block !important;
+  }
+}

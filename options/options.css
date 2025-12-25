@@ -1,0 +1,309 @@
+/**
+ * JSON Formatter Pro - Options Page Styles
+ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background: #1e1e2e;
+  color: #cdd6f4;
+  min-height: 100vh;
+}
+
+.options-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+/* Header */
+.options-header {
+  margin-bottom: 32px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.logo svg {
+  color: #89b4fa;
+}
+
+.logo h1 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.logo p {
+  font-size: 14px;
+  opacity: 0.6;
+}
+
+/* Main */
+.options-main {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* Section */
+.options-section {
+  background: #181825;
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.options-section h2 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #313244;
+  color: #89b4fa;
+}
+
+/* Option Row */
+.option-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0;
+}
+
+.option-row + .option-row {
+  border-top: 1px solid #313244;
+}
+
+.option-info label {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 4px;
+  display: block;
+}
+
+.option-info p {
+  font-size: 12px;
+  opacity: 0.6;
+}
+
+/* Select */
+.option-select {
+  padding: 8px 12px;
+  font-size: 13px;
+  background: #313244;
+  color: #cdd6f4;
+  border: 1px solid #45475a;
+  border-radius: 6px;
+  cursor: pointer;
+  outline: none;
+  min-width: 160px;
+}
+
+.option-select:focus {
+  border-color: #89b4fa;
+}
+
+/* Toggle */
+.toggle {
+  position: relative;
+  display: inline-block;
+  width: 48px;
+  height: 26px;
+}
+
+.toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #45475a;
+  border-radius: 26px;
+  transition: 0.2s;
+}
+
+.toggle-slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 3px;
+  bottom: 3px;
+  background: #cdd6f4;
+  border-radius: 50%;
+  transition: 0.2s;
+}
+
+.toggle input:checked + .toggle-slider {
+  background: #89b4fa;
+}
+
+.toggle input:checked + .toggle-slider:before {
+  transform: translateX(22px);
+}
+
+/* Shortcuts */
+.shortcuts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.shortcut-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+}
+
+.shortcut-item + .shortcut-item {
+  border-top: 1px solid #313244;
+}
+
+.shortcut-keys {
+  display: flex;
+  gap: 4px;
+}
+
+kbd {
+  display: inline-block;
+  padding: 4px 8px;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 11px;
+  background: #313244;
+  border: 1px solid #45475a;
+  border-radius: 4px;
+  box-shadow: 0 1px 0 #45475a;
+}
+
+.shortcut-desc {
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+/* About */
+.about-info {
+  text-align: center;
+  padding: 20px;
+}
+
+.about-info p {
+  margin-bottom: 8px;
+}
+
+.about-features {
+  opacity: 0.6;
+  font-size: 13px;
+  margin: 16px 0 !important;
+}
+
+.about-links {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 20px;
+}
+
+.about-links a {
+  color: #89b4fa;
+  text-decoration: none;
+  font-size: 13px;
+}
+
+.about-links a:hover {
+  text-decoration: underline;
+}
+
+/* Footer */
+.options-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid #313244;
+}
+
+/* Buttons */
+.btn {
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-primary {
+  background: #89b4fa;
+  color: #1e1e2e;
+}
+
+.btn-primary:hover {
+  background: #74a8f7;
+}
+
+.btn-secondary {
+  background: #313244;
+  color: #cdd6f4;
+}
+
+.btn-secondary:hover {
+  background: #45475a;
+}
+
+/* Toast notification */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  padding: 12px 20px;
+  background: #a6e3a1;
+  color: #1e1e2e;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.2s ease;
+  z-index: 1000;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .options-container {
+    padding: 16px;
+  }
+
+  .option-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .option-select,
+  .toggle {
+    align-self: flex-end;
+  }
+}
