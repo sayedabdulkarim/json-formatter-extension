@@ -17,7 +17,6 @@ chrome.runtime.onInstalled.addListener(() => {
     contexts: ['all']
   });
 
-  console.log('JSON Formatter Pro installed');
 });
 
 // Handle context menu clicks
@@ -117,5 +116,3 @@ chrome.action.onClicked.addListener((tab) => {
 //   { urls: ['<all_urls>'] },
 //   ['responseHeaders']
 // );
-
-console.log('JSON Formatter Pro background script loaded');

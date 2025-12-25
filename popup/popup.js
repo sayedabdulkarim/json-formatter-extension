@@ -31,6 +31,21 @@ class JsonFormatterPro {
     this.bindEvents();
     this.setupTreeView();
     this.restoreTabContent();
+
+    // Listen for storage changes (when options page changes theme)
+    chrome.storage.onChanged.addListener((changes, namespace) => {
+      if (namespace === 'sync') {
+        if (changes.theme) {
+          this.currentTheme = changes.theme.newValue || 'dracula';
+        }
+        if (changes.darkMode !== undefined) {
+          this.isDarkMode = changes.darkMode.newValue !== false;
+        }
+        if (changes.theme || changes.darkMode) {
+          this.setupTheme();
+        }
+      }
+    });
   }
 
   // ==================== Settings ====================
@@ -38,25 +53,43 @@ class JsonFormatterPro {
     // Load from chrome.storage.sync (same as options page)
     chrome.storage.sync.get({
       theme: 'dracula',
-      darkMode: true
+      darkMode: true,
+      indent: '2',
+      sortKeys: false
     }, (settings) => {
       this.currentTheme = settings.theme || 'dracula';
       this.isDarkMode = settings.darkMode !== false;
       this.setupTheme();
+
+      // Apply indent and sort settings to controls
+      const indentSelect = document.getElementById('indent-select');
+      const sortKeysCheckbox = document.getElementById('sort-keys');
+      if (indentSelect) indentSelect.value = settings.indent || '2';
+      if (sortKeysCheckbox) sortKeysCheckbox.checked = settings.sortKeys || false;
     });
   }
 
   saveSettings() {
     // Save to chrome.storage.sync (same as options page)
+    const indentSelect = document.getElementById('indent-select');
+    const sortKeysCheckbox = document.getElementById('sort-keys');
+
     chrome.storage.sync.set({
       theme: this.currentTheme,
-      darkMode: this.isDarkMode
+      darkMode: this.isDarkMode,
+      indent: indentSelect ? indentSelect.value : '2',
+      sortKeys: sortKeysCheckbox ? sortKeysCheckbox.checked : false
     });
   }
 
   // ==================== Theme ====================
   setupTheme() {
-    document.body.className = this.isDarkMode ? 'dark' : 'light';
+    // Apply theme class (e.g., theme-dracula, theme-monokai)
+    const themeClass = `theme-${this.currentTheme}`;
+    const modeClass = this.isDarkMode ? 'dark' : 'light';
+
+    // Set both theme and mode classes
+    document.body.className = `${themeClass} ${modeClass}`;
     this.updateThemeIcons();
   }
 
@@ -114,6 +147,10 @@ class JsonFormatterPro {
 
     // Input change
     document.getElementById('json-input').addEventListener('input', () => this.onInputChange());
+
+    // Settings controls - save to storage when changed
+    document.getElementById('indent-select').addEventListener('change', () => this.saveSettings());
+    document.getElementById('sort-keys').addEventListener('change', () => this.saveSettings());
 
     // Search
     document.getElementById('search-input').addEventListener('input', (e) => this.onSearch(e.target.value));
