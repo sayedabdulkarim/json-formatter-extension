@@ -101,6 +101,14 @@ class OptionsPage {
       }
     });
 
+    // Auto-toggle dark mode based on theme selection
+    document.getElementById('theme-select').addEventListener('change', (e) => {
+      const lightThemes = ['github-light', 'one-light', 'solarized-light', 'catppuccin-latte', 'gruvbox-light', 'ayu-light', 'nord-light', 'material-lighter', 'vs-code-light', 'quiet-light'];
+      const isLightTheme = lightThemes.includes(e.target.value);
+      document.getElementById('dark-mode-toggle').checked = !isLightTheme;
+      this.saveSettings();
+    });
+
     // Auto-save on change
     const inputs = document.querySelectorAll('select, input[type="checkbox"]');
     inputs.forEach(input => {

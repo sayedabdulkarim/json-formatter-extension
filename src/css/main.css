@@ -88,7 +88,6 @@
   padding-left: var(--jfp-indent-size);
   border-left: 1px dashed currentColor;
   margin-left: 7px;
-  opacity: 0.3;
 }
 
 .jfp-complex.jfp-expanded > .jfp-children {
@@ -147,7 +146,7 @@
 }
 
 .jfp-comma {
-  opacity: 0.5;
+  opacity: 1;
 }
 
 /* Links */
@@ -464,16 +463,10 @@
   background: transparent;
   color: inherit;
   cursor: pointer;
-  opacity: 0.6;
   transition: all var(--jfp-transition);
 }
 
-.jfp-tab:hover {
-  opacity: 0.8;
-}
-
 .jfp-tab.active {
-  opacity: 1;
   border-bottom: 2px solid currentColor;
   margin-bottom: -1px;
 }

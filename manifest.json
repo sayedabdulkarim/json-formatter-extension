@@ -3,8 +3,8 @@
   "name": "JSON Formatter Pro",
   "version": "1.0.0",
   "description": "Format, validate, diff JSON with tree view, query, convert & 60+ themes. The ultimate JSON toolkit for developers.",
-  "author": "JSON Formatter Pro Team",
-  "homepage_url": "https://github.com/your-repo/json-formatter-pro",
+  "author": "Sayed Abdul Karim",
+  "homepage_url": "https://github.com/sayedabdulkarim/json-formatter-extension",
 
   "icons": {
     "16": "assets/icons/icon16.png",

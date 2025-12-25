@@ -35,21 +35,23 @@ class JsonFormatterPro {
 
   // ==================== Settings ====================
   loadSettings() {
-    const saved = localStorage.getItem('jfp-settings');
-    if (saved) {
-      try {
-        const settings = JSON.parse(saved);
-        this.currentTheme = settings.theme || 'dracula';
-        this.isDarkMode = settings.darkMode !== false;
-      } catch (e) {}
-    }
+    // Load from chrome.storage.sync (same as options page)
+    chrome.storage.sync.get({
+      theme: 'dracula',
+      darkMode: true
+    }, (settings) => {
+      this.currentTheme = settings.theme || 'dracula';
+      this.isDarkMode = settings.darkMode !== false;
+      this.setupTheme();
+    });
   }
 
   saveSettings() {
-    localStorage.setItem('jfp-settings', JSON.stringify({
+    // Save to chrome.storage.sync (same as options page)
+    chrome.storage.sync.set({
       theme: this.currentTheme,
       darkMode: this.isDarkMode
-    }));
+    });
   }
 
   // ==================== Theme ====================
@@ -260,7 +262,6 @@ class JsonFormatterPro {
       const children = document.createElement('div');
       children.className = 'jfp-children';
       children.style.display = depth < 2 ? 'block' : 'none';
-      children.style.borderLeft = '1px dashed #45475a';
       children.style.marginLeft = '8px';
       children.style.paddingLeft = '12px';
 

@@ -24,9 +24,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/your-repo/json-formatter-pro.git"
+    "url": "https://github.com/sayedabdulkarim/json-formatter-extension.git"
   },
   "bugs": {
-    "url": "https://github.com/your-repo/json-formatter-pro/issues"
+    "url": "https://github.com/sayedabdulkarim/json-formatter-extension/issues"
   }
 }

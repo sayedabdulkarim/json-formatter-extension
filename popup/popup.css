@@ -178,16 +178,17 @@ body.light .jfp-toolbar-compact {
   background: transparent;
   cursor: pointer;
   border-radius: 4px;
-  color: inherit;
-  opacity: 0.6;
 }
 
-.jfp-view-tabs-inline .jfp-view-tab:hover {
-  opacity: 0.9;
+body.dark .jfp-view-tabs-inline .jfp-view-tab {
+  color: #ffffff !important;
+}
+
+body.light .jfp-view-tabs-inline .jfp-view-tab {
+  color: #000000 !important;
 }
 
 .jfp-view-tabs-inline .jfp-view-tab.active {
-  opacity: 1;
   background: #89b4fa !important;
   color: #1e1e2e !important;
 }
@@ -251,7 +252,7 @@ body.light .jfp-stats-compact {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 16px;
+  padding: 10px 20px 10px 16px;
   flex-shrink: 0;
 }
 
@@ -352,21 +353,26 @@ body.light .jfp-tabs {
   font-weight: 500;
   border: none;
   background: transparent;
-  color: inherit;
   cursor: pointer;
-  opacity: 0.6;
   transition: all 0.15s ease;
   border-bottom: 2px solid transparent;
   margin-bottom: -1px;
 }
 
-.jfp-tab:hover {
-  opacity: 0.9;
+body.dark .jfp-tabs .jfp-tab {
+  color: #ffffff !important;
+}
+
+body.light .jfp-tabs .jfp-tab {
+  color: #000000 !important;
 }
 
 .jfp-tab.active {
-  opacity: 1;
-  border-bottom-color: #89b4fa;
+  border-bottom: 2px solid #89b4fa !important;
+}
+
+body.light .jfp-tab.active {
+  border-bottom: 2px solid #2563eb !important;
 }
 
 /* ==================== Tab Content ==================== */
@@ -499,12 +505,12 @@ body.light .jfp-toolbar {
 .jfp-btn {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 7px 14px;
-  font-size: 12px;
+  gap: 4px;
+  padding: 4px 9px;
+  font-size: 10px;
   font-weight: 500;
   border: none;
-  border-radius: 6px;
+  border-radius: 4px;
   cursor: pointer;
   transition: all 0.15s ease;
 }
@@ -625,27 +631,27 @@ body.light .jfp-view-tabs {
   font-weight: 500;
   border: none;
   background: transparent;
-  color: inherit;
   cursor: pointer;
-  opacity: 0.5;
   transition: all 0.15s ease;
   border-radius: 4px 4px 0 0;
 }
 
-.jfp-view-tab:hover {
-  opacity: 0.8;
+body.dark .jfp-view-tab {
+  color: #ffffff !important;
 }
 
-.jfp-view-tab.active {
-  opacity: 1;
+body.light .jfp-view-tab {
+  color: #000000 !important;
 }
 
 body.dark .jfp-view-tab.active {
   background: #1e1e2e;
+  color: #f5f5f5 !important;
 }
 
 body.light .jfp-view-tab.active {
   background: #ffffff;
+  color: #1e1e2e !important;
 }
 
 /* ==================== Output Section ==================== */
@@ -770,21 +776,21 @@ body.light .jfp-output-view {
   font-family: 'SF Mono', 'Fira Code', 'Monaco', 'Consolas', monospace;
   font-size: 13px;
   line-height: 1.6;
+  opacity: 1 !important;
 }
 
-/* Force colors on all tree elements */
-body.dark .jfp-tree-view,
-body.dark .jfp-tree-view * {
-  color: #e2e8f0;
+/* Base tree view text */
+body.dark .jfp-tree-view {
+  color: #cdd6f4;
 }
 
-body.light .jfp-tree-view,
-body.light .jfp-tree-view * {
+body.light .jfp-tree-view {
   color: #1e293b;
 }
 
 .jfp-node {
   margin: 2px 0;
+  opacity: 1 !important;
 }
 
 .jfp-complex {
@@ -819,12 +825,12 @@ body.light .jfp-tree-view * {
 
 body.dark .jfp-tree-view .jfp-toggle,
 body.dark .jfp-toggle {
-  color: #fbbf24 !important; /* Yellow/gold arrow */
+  color: #f1fa8c !important; /* Dracula yellow */
 }
 
 body.light .jfp-tree-view .jfp-toggle,
 body.light .jfp-toggle {
-  color: #d97706 !important; /* Orange arrow */
+  color: #6f42c1 !important; /* GitHub purple - stands out on white */
 }
 
 .jfp-toggle:hover {
@@ -841,7 +847,15 @@ body.light .jfp-toggle {
   display: none;
   margin-left: 12px;
   padding-left: 16px;
-  border-left: 1px dashed #45475a;
+  opacity: 1 !important;
+}
+
+body.dark .jfp-children {
+  border-left: 1px dashed #6272a4; /* Dracula comment color */
+}
+
+body.light .jfp-children {
+  border-left: 1px dashed #d1d5da; /* GitHub border */
 }
 
 /* Show children when expanded */
@@ -868,17 +882,17 @@ body.light .jfp-toggle {
 /* Key styling */
 .jfp-key {
   cursor: pointer;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 body.dark .jfp-tree-view .jfp-key,
 body.dark .jfp-key {
-  color: #7dd3fc !important; /* Bright cyan-blue */
+  color: #8be9fd !important; /* Dracula cyan */
 }
 
 body.light .jfp-tree-view .jfp-key,
 body.light .jfp-key {
-  color: #0369a1 !important; /* Strong blue */
+  color: #005cc5 !important; /* GitHub blue */
 }
 
 .jfp-key:hover {
@@ -892,24 +906,24 @@ body.light .jfp-key {
 
 body.dark .jfp-tree-view .jfp-colon,
 body.dark .jfp-colon {
-  color: #94a3b8 !important;
+  color: #f8f8f2 !important; /* Dracula foreground */
 }
 
 body.light .jfp-tree-view .jfp-colon,
 body.light .jfp-colon {
-  color: #475569 !important;
+  color: #24292e !important; /* GitHub dark */
 }
 
 body.dark .jfp-tree-view .jfp-bracket,
 body.dark .jfp-bracket {
-  color: #f8fafc !important;
-  font-weight: 600;
+  color: #f8f8f2 !important; /* Dracula foreground */
+  font-weight: 700;
 }
 
 body.light .jfp-tree-view .jfp-bracket,
 body.light .jfp-bracket {
-  color: #1e293b !important;
-  font-weight: 600;
+  color: #24292e !important; /* GitHub dark */
+  font-weight: 700;
 }
 
 /* Item count */
@@ -920,12 +934,12 @@ body.light .jfp-bracket {
 
 body.dark .jfp-tree-view .jfp-count,
 body.dark .jfp-count {
-  color: #94a3b8 !important;
+  color: #6272a4 !important; /* Dracula comment - subtle */
 }
 
 body.light .jfp-tree-view .jfp-count,
 body.light .jfp-count {
-  color: #64748b !important;
+  color: #6a737d !important; /* GitHub comment */
 }
 
 /* Preview */
@@ -946,64 +960,78 @@ body.light .jfp-count {
 
 body.dark .jfp-tree-view .jfp-comma,
 body.dark .jfp-comma {
-  color: #94a3b8 !important;
+  color: #f8f8f2 !important; /* Dracula foreground */
 }
 
 body.light .jfp-tree-view .jfp-comma,
 body.light .jfp-comma {
-  color: #64748b !important;
+  color: #24292e !important; /* GitHub dark */
 }
 
 /* Primitive values */
 .jfp-primitive {
   display: block;
   padding: 2px 0;
+  opacity: 1 !important;
+}
+
+/* All values base - prevent any opacity issues */
+.jfp-value {
+  opacity: 1 !important;
 }
 
 /* String values */
 body.dark .jfp-tree-view .jfp-value.jfp-string,
 body.dark .jfp-value.jfp-string {
-  color: #4ade80 !important; /* Bright green */
+  color: #50fa7b !important; /* Dracula green */
+  opacity: 1 !important;
 }
 
 body.light .jfp-tree-view .jfp-value.jfp-string,
 body.light .jfp-value.jfp-string {
-  color: #15803d !important; /* Strong green */
+  color: #22863a !important; /* GitHub green */
+  opacity: 1 !important;
 }
 
 /* Number values */
 body.dark .jfp-tree-view .jfp-value.jfp-number,
 body.dark .jfp-value.jfp-number {
-  color: #fb923c !important; /* Bright orange */
+  color: #ffb86c !important; /* Dracula orange */
+  opacity: 1 !important;
 }
 
 body.light .jfp-tree-view .jfp-value.jfp-number,
 body.light .jfp-value.jfp-number {
-  color: #c2410c !important; /* Strong orange */
+  color: #e36209 !important; /* GitHub orange */
+  opacity: 1 !important;
 }
 
 /* Boolean values */
 body.dark .jfp-tree-view .jfp-value.jfp-boolean,
 body.dark .jfp-value.jfp-boolean {
-  color: #c084fc !important; /* Bright purple */
+  color: #bd93f9 !important; /* Dracula purple */
+  opacity: 1 !important;
 }
 
 body.light .jfp-tree-view .jfp-value.jfp-boolean,
 body.light .jfp-value.jfp-boolean {
-  color: #7c3aed !important; /* Strong purple */
+  color: #6f42c1 !important; /* GitHub purple */
+  opacity: 1 !important;
 }
 
 /* Null values */
 body.dark .jfp-tree-view .jfp-value.jfp-null,
 body.dark .jfp-value.jfp-null {
-  color: #f87171 !important; /* Red-ish for null */
+  color: #ff5555 !important; /* Dracula red */
   font-style: italic;
+  opacity: 1 !important;
 }
 
 body.light .jfp-tree-view .jfp-value.jfp-null,
 body.light .jfp-value.jfp-null {
-  color: #dc2626 !important; /* Red for null */
+  color: #d73a49 !important; /* GitHub red */
   font-style: italic;
+  opacity: 1 !important;
 }
 
 /* Links */
@@ -1161,23 +1189,25 @@ body.light .jfp-stats-bar {
 
 .jfp-diff-error {
   flex: 1;
-  padding: 6px 12px;
-  font-size: 12px;
+  padding: 8px 12px;
+  font-size: 11px;
   border-radius: 4px;
   display: none;
+  margin-left: 10px;
 }
 
 .jfp-diff-error.show {
   display: block;
-  background: #f38ba820;
-  color: #f38ba8;
-  border: 1px solid #f38ba840;
+  background: #ff6b6b;
+  color: #ffffff;
+  border: none;
+  font-weight: 500;
 }
 
 body.light .jfp-diff-error.show {
-  background: #dc262615;
-  color: #dc2626;
-  border: 1px solid #dc262630;
+  background: #e53935;
+  color: #ffffff;
+  border: none;
 }
 
 .jfp-diff-output {
