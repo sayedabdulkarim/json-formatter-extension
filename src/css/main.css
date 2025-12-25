@@ -268,16 +268,14 @@
   padding: 8px 12px;
   text-align: left;
   border: 1px solid currentColor;
-  opacity: 0.8;
 }
 
 .jfp-table th {
   font-weight: 600;
-  opacity: 1;
 }
 
 .jfp-table tbody tr:hover {
-  opacity: 0.9;
+  background: rgba(255, 255, 255, 0.05);
 }
 
 /* ==================== Diff View ==================== */
@@ -293,7 +291,6 @@
   overflow: auto;
   padding: 16px;
   border: 1px solid currentColor;
-  opacity: 0.3;
 }
 
 .jfp-diff-panel:first-child {
@@ -306,7 +303,6 @@
   margin-bottom: 12px;
   padding-bottom: 8px;
   border-bottom: 1px solid currentColor;
-  opacity: 0.5;
 }
 
 .jfp-diff-line {
@@ -343,7 +339,6 @@
 
 .jfp-editor:focus {
   box-shadow: 0 0 0 2px currentColor;
-  opacity: 0.2;
 }
 
 /* ==================== Toolbar ==================== */
@@ -353,7 +348,6 @@
   gap: 8px;
   padding: 8px 12px;
   border-bottom: 1px solid currentColor;
-  opacity: 0.2;
   flex-wrap: wrap;
 }
 
@@ -386,7 +380,6 @@
   transition: all var(--jfp-transition);
   background: transparent;
   color: inherit;
-  opacity: 0.8;
 }
 
 .jfp-btn:hover {
@@ -417,7 +410,6 @@
   gap: 8px;
   padding: 8px 12px;
   border-bottom: 1px solid currentColor;
-  opacity: 0.2;
 }
 
 .jfp-search-input {
@@ -430,11 +422,6 @@
   background: transparent;
   color: inherit;
   outline: none;
-  opacity: 0.5;
-}
-
-.jfp-search-input:focus {
-  opacity: 0.8;
 }
 
 .jfp-search-input::placeholder {
@@ -451,7 +438,6 @@
 .jfp-tabs {
   display: flex;
   border-bottom: 1px solid currentColor;
-  opacity: 0.2;
 }
 
 .jfp-tab {
@@ -496,7 +482,6 @@
   justify-content: space-between;
   padding: 16px 20px;
   border-bottom: 1px solid currentColor;
-  opacity: 0.2;
 }
 
 .jfp-modal-title {
@@ -528,7 +513,6 @@
   gap: 8px;
   padding: 16px 20px;
   border-top: 1px solid currentColor;
-  opacity: 0.2;
 }
 
 /* ==================== Toast Notifications ==================== */
@@ -586,7 +570,6 @@
   font-family: var(--jfp-font-mono);
   font-size: 12px;
   border-bottom: 1px solid currentColor;
-  opacity: 0.2;
   overflow-x: auto;
   white-space: nowrap;
 }
@@ -622,7 +605,6 @@
   padding: 12px;
   border: 1px solid currentColor;
   border-radius: var(--jfp-border-radius);
-  opacity: 0.2;
 }
 
 .jfp-stat-label {

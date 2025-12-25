@@ -594,31 +594,34 @@ class JsonFormatterPro {
   compareJson() {
     const leftInput = document.getElementById('diff-left').value.trim();
     const rightInput = document.getElementById('diff-right').value.trim();
-    const errorEl = document.getElementById('diff-error');
+    const outputEl = document.getElementById('diff-output');
+    const summaryEl = document.getElementById('diff-summary');
 
-    // Hide previous error
-    errorEl.classList.remove('show');
-    errorEl.textContent = '';
+    // Clear previous output
+    summaryEl.innerHTML = '';
 
     if (!leftInput || !rightInput) {
-      errorEl.textContent = 'Please enter JSON in both panels';
-      errorEl.classList.add('show');
+      this.renderDiffError([{
+        panel: !leftInput ? 'Original JSON' : 'Modified JSON',
+        message: 'Please enter JSON data',
+        hint: 'Paste valid JSON in both panels to compare'
+      }]);
       return;
     }
 
     const leftResult = this.engine.parse(leftInput);
     const rightResult = this.engine.parse(rightInput);
 
+    const errors = [];
     if (!leftResult.success) {
-      const err = leftResult.error;
-      errorEl.innerHTML = `<strong>Left panel error (line ${err.line}, col ${err.column}):</strong> ${this.escapeHtml(err.message)}`;
-      errorEl.classList.add('show');
-      return;
+      errors.push(this.formatJsonError('Original JSON', leftResult.error, leftInput));
     }
     if (!rightResult.success) {
-      const err = rightResult.error;
-      errorEl.innerHTML = `<strong>Right panel error (line ${err.line}, col ${err.column}):</strong> ${this.escapeHtml(err.message)}`;
-      errorEl.classList.add('show');
+      errors.push(this.formatJsonError('Modified JSON', rightResult.error, rightInput));
+    }
+
+    if (errors.length > 0) {
+      this.renderDiffError(errors);
       return;
     }
 
@@ -629,6 +632,149 @@ class JsonFormatterPro {
     this.renderDiff(leftResult.data, rightResult.data, diff);
     this.renderDiffSummary(summary);
     this.showToast('Comparison complete', 'success');
+  }
+
+  formatJsonError(panel, error, input) {
+    // Get user-friendly error message
+    const friendlyMessage = this.getFriendlyErrorMessage(error.message, input, error.position);
+
+    return {
+      panel: panel,
+      line: error.line,
+      column: error.column,
+      message: friendlyMessage.message,
+      hint: friendlyMessage.hint,
+      context: error.context
+    };
+  }
+
+  getFriendlyErrorMessage(originalMessage, input, position) {
+    const msg = originalMessage.toLowerCase();
+
+    // Extract character at error position for context
+    const charAtError = position > 0 && position < input.length ? input[position] : '';
+    const charBefore = position > 1 ? input[position - 1] : '';
+
+    // Common JSON errors with friendly messages
+    if (msg.includes('unexpected token') || msg.includes('unexpected non-whitespace')) {
+      if (charAtError === ',') {
+        return {
+          message: 'Unexpected comma found',
+          hint: 'Check for trailing comma after the last item in an object or array, or double commas'
+        };
+      }
+      if (charAtError === '}' || charAtError === ']') {
+        return {
+          message: `Unexpected closing bracket "${charAtError}"`,
+          hint: 'You might be missing a value before this bracket, or have an extra closing bracket'
+        };
+      }
+      if (charAtError === '{' || charAtError === '[') {
+        return {
+          message: `Unexpected opening bracket "${charAtError}"`,
+          hint: 'Check if you\'re missing a comma before this bracket, or a colon after a key'
+        };
+      }
+      if (charBefore === ':' || msg.includes('after colon')) {
+        return {
+          message: 'Invalid value after colon',
+          hint: 'The value after ":" must be a valid JSON value (string, number, object, array, true, false, or null)'
+        };
+      }
+      return {
+        message: 'Unexpected character in JSON',
+        hint: 'Check for unquoted strings, missing commas, or invalid characters'
+      };
+    }
+
+    if (msg.includes('unterminated string') || msg.includes('bad string')) {
+      return {
+        message: 'String not properly closed',
+        hint: 'Make sure all strings have matching opening and closing double quotes (")'
+      };
+    }
+
+    if (msg.includes('expected') && msg.includes('colon')) {
+      return {
+        message: 'Missing colon after key',
+        hint: 'Object keys must be followed by a colon (:) and then a value'
+      };
+    }
+
+    if (msg.includes('expected') && (msg.includes('comma') || msg.includes(','))) {
+      return {
+        message: 'Missing comma between elements',
+        hint: 'Add a comma between object properties or array items'
+      };
+    }
+
+    if (msg.includes('property name') || msg.includes('expected string')) {
+      return {
+        message: 'Invalid or missing property name',
+        hint: 'Object keys must be strings enclosed in double quotes ("key")'
+      };
+    }
+
+    if (msg.includes('end of') || msg.includes('eof')) {
+      return {
+        message: 'JSON ended unexpectedly',
+        hint: 'Check for missing closing brackets } or ]'
+      };
+    }
+
+    if (msg.includes('duplicate key')) {
+      return {
+        message: 'Duplicate key found',
+        hint: 'Each key in an object must be unique'
+      };
+    }
+
+    // Default fallback
+    return {
+      message: originalMessage,
+      hint: 'Check the JSON syntax near the indicated position'
+    };
+  }
+
+  renderDiffError(errors) {
+    const outputEl = document.getElementById('diff-output');
+
+    let html = '<div class="jfp-error-display">';
+
+    errors.forEach((err, index) => {
+      html += `
+        <div class="jfp-error-card">
+          <div class="jfp-error-header">
+            <svg viewBox="0 0 24 24" width="20" height="20">
+              <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+            </svg>
+            <span class="jfp-error-panel">${this.escapeHtml(err.panel)}</span>
+            ${err.line ? `<span class="jfp-error-location">Line ${err.line}, Column ${err.column}</span>` : ''}
+          </div>
+          <div class="jfp-error-message">${this.escapeHtml(err.message)}</div>
+          <div class="jfp-error-hint">💡 ${this.escapeHtml(err.hint)}</div>
+          ${err.context ? this.renderErrorContext(err.context) : ''}
+        </div>
+      `;
+    });
+
+    html += '</div>';
+    outputEl.innerHTML = html;
+  }
+
+  renderErrorContext(context) {
+    if (!context || context.length === 0) return '';
+
+    let html = '<div class="jfp-error-context">';
+    context.forEach(line => {
+      const lineClass = line.isError ? 'jfp-error-line error' : 'jfp-error-line';
+      html += `<div class="${lineClass}">
+        <span class="jfp-line-num">${line.lineNumber}</span>
+        <code>${this.escapeHtml(line.content)}</code>
+      </div>`;
+    });
+    html += '</div>';
+    return html;
   }
 
   renderDiff(left, right, diff) {

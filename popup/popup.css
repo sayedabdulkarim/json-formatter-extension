@@ -826,7 +826,7 @@ body[class*="theme-"] {
   font-size: 12px;
   font-weight: 600;
   text-transform: uppercase;
-  opacity: 0.7;
+  color: var(--text-primary) !important;
 }
 
 .jfp-input-actions {
@@ -986,6 +986,7 @@ body[class*="theme-"] {
   gap: 6px;
   font-size: 12px;
   cursor: pointer;
+  color: var(--text-primary) !important;
 }
 
 .jfp-checkbox input {
@@ -1432,27 +1433,9 @@ body[class*="theme-"] {
   height: 100px;
 }
 
+/* Old diff error in toolbar - now hidden, errors show in output area */
 .jfp-diff-error {
-  flex: 1;
-  padding: 8px 12px;
-  font-size: 11px;
-  border-radius: 4px;
-  display: none;
-  margin-left: 10px;
-}
-
-.jfp-diff-error.show {
-  display: block;
-  background: #ff6b6b;
-  color: #ffffff;
-  border: none;
-  font-weight: 500;
-}
-
-body.light .jfp-diff-error.show {
-  background: #e53935;
-  color: #ffffff;
-  border: none;
+  display: none !important;
 }
 
 .jfp-diff-output {
@@ -1461,6 +1444,99 @@ body.light .jfp-diff-error.show {
   padding: 12px 16px;
   min-height: 0 !important;
   max-height: 100%;
+  background: var(--bg-primary) !important;
+  color: var(--text-primary) !important;
+}
+
+/* ==================== Error Display ==================== */
+.jfp-error-display {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 8px;
+}
+
+.jfp-error-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-left: 4px solid #f38ba8;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.jfp-error-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.jfp-error-header svg {
+  color: #f38ba8;
+  flex-shrink: 0;
+}
+
+.jfp-error-panel {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--text-primary);
+}
+
+.jfp-error-location {
+  font-size: 12px;
+  color: var(--text-secondary);
+  background: var(--bg-tertiary);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.jfp-error-message {
+  font-size: 15px;
+  font-weight: 600;
+  color: #f38ba8;
+  margin-bottom: 8px;
+}
+
+.jfp-error-hint {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+.jfp-error-context {
+  background: var(--bg-tertiary);
+  border-radius: 6px;
+  padding: 12px;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 12px;
+  overflow-x: auto;
+}
+
+.jfp-error-line {
+  display: flex;
+  padding: 2px 0;
+}
+
+.jfp-error-line.error {
+  background: rgba(243, 139, 168, 0.2);
+  border-radius: 4px;
+  margin: 0 -8px;
+  padding: 2px 8px;
+}
+
+.jfp-error-line .jfp-line-num {
+  width: 32px;
+  text-align: right;
+  padding-right: 12px;
+  color: var(--text-secondary);
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.jfp-error-line code {
+  color: var(--text-primary);
+  white-space: pre;
 }
 
 .jfp-diff-summary {
@@ -1564,6 +1640,8 @@ body.light .jfp-diff-error.show {
   white-space: pre-wrap;
   min-height: 0 !important;
   max-height: 100%;
+  background: var(--bg-primary) !important;
+  color: var(--text-primary) !important;
 }
 
 /* ==================== Context Menu ==================== */
