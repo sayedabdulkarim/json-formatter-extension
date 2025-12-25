@@ -155,4 +155,4 @@ MIT License - feel free to use this code in your own projects.
 
 ---
 
-Made with love for developers
+Made with ❤️ by **Sayed Abdul Karim**
