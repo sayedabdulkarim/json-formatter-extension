@@ -780,22 +780,113 @@ class JsonFormatterPro {
   renderDiff(left, right, diff) {
     const container = document.getElementById('diff-output');
 
-    const leftFormatted = this.engine.format(left, { indent: 2 });
-    const rightFormatted = this.engine.format(right, { indent: 2 });
+    // Get flat list of all changes
+    const changes = diff ? this.differ._flattenChanges(Array.isArray(diff) ? diff : [diff]) : [];
 
-    // Simple side-by-side view
+    // Build change maps for quick lookup
+    const addedPaths = new Set();
+    const removedPaths = new Set();
+    const modifiedPaths = new Set();
+
+    changes.forEach(change => {
+      const pathStr = change.path.join('.');
+      if (change.type === 'added') addedPaths.add(pathStr);
+      else if (change.type === 'removed') removedPaths.add(pathStr);
+      else if (change.type === 'modified') modifiedPaths.add(pathStr);
+    });
+
+    // Render with highlighting
+    const leftHtml = this.renderJsonWithHighlight(left, [], removedPaths, modifiedPaths, 'left');
+    const rightHtml = this.renderJsonWithHighlight(right, [], addedPaths, modifiedPaths, 'right');
+
     container.innerHTML = `
       <div class="jfp-diff-view">
         <div class="jfp-diff-panel">
           <div class="jfp-diff-header">Original</div>
-          <pre>${this.escapeHtml(leftFormatted)}</pre>
+          <pre class="jfp-diff-content">${leftHtml}</pre>
         </div>
         <div class="jfp-diff-panel">
           <div class="jfp-diff-header">Modified</div>
-          <pre>${this.escapeHtml(rightFormatted)}</pre>
+          <pre class="jfp-diff-content">${rightHtml}</pre>
         </div>
       </div>
     `;
+  }
+
+  renderJsonWithHighlight(obj, path, highlightSet1, highlightSet2, side) {
+    return this._renderNode(obj, path, highlightSet1, highlightSet2, side, 0);
+  }
+
+  _renderNode(value, path, highlightSet1, highlightSet2, side, indent) {
+    const pathStr = path.join('.');
+    const spaces = '  '.repeat(indent);
+
+    // Check if this path should be highlighted
+    let highlightClass = '';
+    if (highlightSet1.has(pathStr)) {
+      highlightClass = side === 'left' ? 'diff-removed' : 'diff-added';
+    } else if (highlightSet2.has(pathStr)) {
+      highlightClass = 'diff-modified';
+    }
+
+    if (value === null) {
+      return `<span class="${highlightClass}">null</span>`;
+    }
+
+    if (typeof value === 'string') {
+      return `<span class="${highlightClass}">"${this.escapeHtml(value)}"</span>`;
+    }
+
+    if (typeof value === 'number' || typeof value === 'boolean') {
+      return `<span class="${highlightClass}">${value}</span>`;
+    }
+
+    if (Array.isArray(value)) {
+      if (value.length === 0) return `<span class="${highlightClass}">[]</span>`;
+
+      let result = '[\n';
+      value.forEach((item, index) => {
+        const childPath = [...path, index];
+        const childPathStr = childPath.join('.');
+        let lineClass = '';
+        if (highlightSet1.has(childPathStr)) {
+          lineClass = side === 'left' ? 'diff-removed' : 'diff-added';
+        } else if (highlightSet2.has(childPathStr)) {
+          lineClass = 'diff-modified';
+        }
+
+        const comma = index < value.length - 1 ? ',' : '';
+        const childHtml = this._renderNode(item, childPath, highlightSet1, highlightSet2, side, indent + 1);
+        result += `<span class="diff-line ${lineClass}">${spaces}  ${childHtml}${comma}</span>\n`;
+      });
+      result += `${spaces}]`;
+      return result;
+    }
+
+    if (typeof value === 'object') {
+      const keys = Object.keys(value);
+      if (keys.length === 0) return `<span class="${highlightClass}">{}</span>`;
+
+      let result = '{\n';
+      keys.forEach((key, index) => {
+        const childPath = [...path, key];
+        const childPathStr = childPath.join('.');
+        let lineClass = '';
+        if (highlightSet1.has(childPathStr)) {
+          lineClass = side === 'left' ? 'diff-removed' : 'diff-added';
+        } else if (highlightSet2.has(childPathStr)) {
+          lineClass = 'diff-modified';
+        }
+
+        const comma = index < keys.length - 1 ? ',' : '';
+        const childHtml = this._renderNode(value[key], childPath, highlightSet1, highlightSet2, side, indent + 1);
+        result += `<span class="diff-line ${lineClass}">${spaces}  "${this.escapeHtml(key)}": ${childHtml}${comma}</span>\n`;
+      });
+      result += `${spaces}}`;
+      return result;
+    }
+
+    return String(value);
   }
 
   renderDiffSummary(summary) {
